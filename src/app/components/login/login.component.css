@@ -1,0 +1,69 @@
+#center-login-div {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#login-md-card{
+  color:white;
+}
+
+.login-button-div{
+  flex: 0 0;
+}
+
+#login-div {
+  border:solid 1px black;
+}
+
+.login-button{
+  padding:5px;
+  width:300px;
+}
+
+#lock {
+  color:black;
+  text-align: center;
+  display: block;
+}
+
+#google{
+  background: #ea4335 url('../../../assets/images/google.svg') no-repeat 10px;
+  background-size: 25px;
+}
+#facebook{
+  background: #3b5998 url('../../../assets/images/facebook.svg') no-repeat 10px;
+  background-size: 25px;
+  margin: 10px 0;
+}
+
+#email{
+  background-image: url('../../../assets/images/envelope.svg');
+  background-repeat: no-repeat;
+  background-position: 10px;
+  background-size: 25px;
+}
+
+.divider {
+  width:100%;
+  text-align:center;
+  color: black;
+  margin: 20px 0;
+}
+
+.divider hr {
+  margin-left:auto;
+  margin-right:auto;
+  width: 40%;
+
+}
+
+.left {
+  float:left;
+}
+
+.right {
+  float:right;
+}
