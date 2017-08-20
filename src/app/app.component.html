@@ -10,7 +10,8 @@
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-    <button md-button [routerLink]="['logga-in']">Logga in</button>
+    <button *ngIf="!(firebaseAuthService.afAuth.authState | async)" md-button [routerLink]="['logga-in']">Logga in</button>
+    <button *ngIf="(firebaseAuthService.afAuth.authState | async)" md-button (click)="firebaseAuthService.logout()">Logga ut</button>
   </div>
   <button md-button (click)="sidenav.toggle()" fxHide="false" fxHide.gt-sm>
     <md-icon>menu</md-icon>
@@ -23,5 +24,6 @@
       <a md-list-item [routerLink]="['skapa-annons']" (click)="sidenav.close()">Skapa annons</a>
     </md-nav-list>
   </md-sidenav>
+<flash-messages></flash-messages>
 <router-outlet></router-outlet>
 </md-sidenav-container>

@@ -1,0 +1,43 @@
+#center-login-div {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#login-md-card{
+  color:white;
+}
+
+.login-button-div{
+  flex: 0 0;
+}
+
+#sign-up-button{
+  padding:5px;
+  width:300px;
+  background-image: url('../../../assets/images/envelope.svg');
+  background-repeat: no-repeat;
+  background-position: 10px;
+  background-size: 25px;
+}
+
+#sign-up-form{
+  color:black;
+}
+
+md-input-container {
+  display:block;
+}
+
+#lock {
+  color:black;
+  text-align: center;
+  display: block;
+}
+
+/* When the input is not focused */
+md-input-container label {
+  color: red;
+}

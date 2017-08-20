@@ -23,6 +23,10 @@
   width:300px;
 }
 
+#login-form{
+  color:black;
+}
+
 #lock {
   color:black;
   text-align: center;
@@ -66,4 +70,8 @@
 
 .right {
   float:right;
+}
+
+md-input-container {
+  display:block;
 }

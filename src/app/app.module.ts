@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule} from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
@@ -12,10 +12,11 @@ import { environment } from '../environments/environment';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AppErrorHandler } from './common/app-error-handler';
 import { ErrorHandler } from '@angular/core';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // Material imports
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule} from '@angular/material';
 import 'hammerjs';
 
 // Component imports
@@ -28,13 +29,15 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AdComponent } from './components/ad/ad.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'annonser', component: AdListComponent},
   {path: 'skapa-annons', component: AdCreateComponent},
   {path: 'annons/:id', component: AdComponent},
-  {path: 'logga-in', component: LoginComponent}
+  {path: 'logga-in', component: LoginComponent},
+  {path: 'skapa-konto', component: SignUpComponent}
 ];
 
 @NgModule({
@@ -47,7 +50,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     SettingsComponent,
     AdComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -55,10 +59,12 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
-    MdSidenavModule, MdListModule, // Material modules
+    MdSidenavModule, MdListModule, MdInputModule, // Material modules
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    FlashMessagesModule,
   ],
   providers: [
     // Services

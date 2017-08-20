@@ -1,0 +1,28 @@
+<div id="center-login-div">
+  <md-card id="login-md-card" [@moveIn]="state">
+    <i id="lock" class="material-icons md-96">lock_outline</i>
+    <form id="sign-up-form" #formData="ngForm" (submit)="signUp()">
+      <!--Email-->
+      <md-input-container>
+        <input mdInput placeholder="Email" [(ngModel)]="email" name="email" required [formControl]="emailFormControl" spellcheck="false">
+        <md-error *ngIf="emailFormControl.hasError('pattern')">
+          Felaktigt format.
+        </md-error>
+        <md-error *ngIf="emailFormControl.hasError('required')">
+          Email krävs.
+        </md-error>
+      </md-input-container>
+      <!--Password-->
+      <md-input-container>
+        <input mdInput placeholder="Lösenord" type="password" [(ngModel)]="password" name="password" required [formControl]="passwordFormControl">
+        <md-error *ngIf="passwordFormControl.hasError('required')">
+          Lösenord krävs.
+        </md-error>
+        <md-error *ngIf="passwordFormControl.hasError('minlength')">
+          Lösenordet är för kort.
+        </md-error>
+      </md-input-container>
+      <button md-raised-button color="primary" id="sign-up-button" [disabled]="passwordFormControl.errors||emailFormControl.errors">Skapa konto</button>
+    </form>
+  </md-card>
+</div>
