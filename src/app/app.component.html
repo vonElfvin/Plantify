@@ -10,6 +10,7 @@
   <!-- This fills the remaining space of the current row -->
   <span class="fill-remaining-space"></span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button *ngIf="!(firebaseAuthService.afAuth.authState | async)" md-button [routerLink]="['skapa-konto']">Skapa konto</button>
     <button *ngIf="!(firebaseAuthService.afAuth.authState | async)" md-button [routerLink]="['logga-in']">Logga in</button>
     <button *ngIf="(firebaseAuthService.afAuth.authState | async)" md-button (click)="firebaseAuthService.logout()">Logga ut</button>
   </div>
@@ -22,8 +23,11 @@
     <md-nav-list>
       <a md-list-item [routerLink]="['annonser']" (click)="sidenav.close()">Annonser</a>
       <a md-list-item [routerLink]="['skapa-annons']" (click)="sidenav.close()">Skapa annons</a>
+      <hr>
+      <a *ngIf="!(firebaseAuthService.afAuth.authState | async)" md-list-item [routerLink]="['skapa-konto']" (click)="sidenav.close()">Skapa konto</a>
+      <a *ngIf="!(firebaseAuthService.afAuth.authState | async)" md-list-item [routerLink]="['logga-in']" (click)="sidenav.close()">Logga in</a>
+      <a *ngIf="(firebaseAuthService.afAuth.authState | async)" md-list-item (click)="firebaseAuthService.logout()" (click)="sidenav.close()">Logga ut</a>
     </md-nav-list>
   </md-sidenav>
-<flash-messages></flash-messages>
 <router-outlet></router-outlet>
 </md-sidenav-container>

@@ -1,5 +1,5 @@
-<div id="center-login-div">
-  <md-card id="login-md-card" [@moveInLeft]="state">
+<div class="center-div">
+  <md-card id="login-md-card" [@moveIn]="state">
     <i id="lock" class="material-icons md-96">lock_outline</i>
     <div class="login-button-div">
       <button id="facebook" class="login-button" md-raised-button (click)="firebaseAuthService.loginFacebook()"> Logga in med Facebook</button>
@@ -12,7 +12,7 @@
     </div>
     <form id="login-form" #formData="ngForm" (ngSubmit)="firebaseAuthService.loginEmailAndPassword(formData)">
       <md-input-container>
-        <input mdInput  placeholder="Email" type="text" [(ngModel)]="email" name="email" spellcheck="false">
+        <input mdInput placeholder="Email" type="text" [(ngModel)]="email" name="email" spellcheck="false">
       </md-input-container>
       <md-input-container>
         <input mdInput placeholder="Lösenord" type="password" [(ngModel)]="password" name="password">

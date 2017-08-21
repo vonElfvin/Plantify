@@ -1,0 +1,30 @@
+.create-ad-input-container{
+  width:100%;
+}
+
+#ad-create-md-card{
+  width:300px;
+}
+
+#radio-button-div {
+  margin:20px;
+}
+
+#image-button{
+  padding:3px;
+  width: 100%;
+  background-image: url('../../../assets/images/upload.svg');
+  background-repeat: no-repeat;
+  background-position: 10px;
+  background-size: 25px;
+}
+
+#submit-button{
+  padding:3px;
+  width:100%;
+
+  background-image: url('../../../assets/images/plus.svg');
+  background-repeat: no-repeat;
+  background-position: 10px;
+  background-size: 25px;
+}

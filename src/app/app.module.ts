@@ -16,7 +16,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // Material imports
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule, MdRadioModule} from '@angular/material';
 import 'hammerjs';
 
 // Component imports
@@ -59,7 +59,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
-    MdSidenavModule, MdListModule, MdInputModule, // Material modules
+    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, // Material modules
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     FlexLayoutModule,

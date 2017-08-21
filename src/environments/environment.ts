@@ -10,7 +10,7 @@ export const environment = {
     authDomain: 'plantify-64319.firebaseapp.com',
     databaseURL: 'https://plantify-64319.firebaseio.com',
     projectId: 'plantify-64319',
-    storageBucket: '',
+    storageBucket: 'plantify-64319.appspot.com',
     messagingSenderId: '1080377796316'
   }
 };
