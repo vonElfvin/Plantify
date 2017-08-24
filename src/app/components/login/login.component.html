@@ -1,26 +1,67 @@
-<div class="center-div">
+<div id="center-div">
   <md-card id="login-md-card" [@moveIn]="state">
-    <i id="lock" class="material-icons md-96">lock_outline</i>
-    <div class="login-button-div">
-      <button id="facebook" class="login-button" md-raised-button (click)="firebaseAuthService.loginFacebook()"> Logga in med Facebook</button>
-    </div>
-    <div class="login-button-div">
-      <button id="google" class="login-button" md-raised-button (click)="firebaseAuthService.loginGoogle()"> Logga in med Google</button>
-    </div>
-    <div class="divider">
-      <hr class="left"/><b style="color:#888888">ELLER</b><hr class="right" />
-    </div>
-    <form id="login-form" #formData="ngForm" (ngSubmit)="firebaseAuthService.loginEmailAndPassword(formData)">
-      <md-input-container>
-        <input mdInput placeholder="Email" type="text" [(ngModel)]="email" name="email" spellcheck="false">
-      </md-input-container>
-      <md-input-container>
-        <input mdInput placeholder="Lösenord" type="password" [(ngModel)]="password" name="password">
-      </md-input-container>
-      <div class="login-button-div">
-        <button md-raised-button color="primary" id="email" class="login-button"> Logga in med Email</button>
-      </div>
-    </form>
-    <a routerLink="/skapa-konto">Skapa konto</a>
+    <md-tab-group disableRipple="true">
+      <!--Login Tab-->
+      <md-tab label="Logga in">
+        <i id="lock" class="material-icons md-96">lock_outline</i>
+
+        <!--Facebook-->
+        <div class="login-button-div">
+          <button id="facebook" class="login-button" md-raised-button (click)="firebaseAuthService.loginFacebook()"> Logga in med Facebook</button>
+        </div>
+
+        <!--Google--->
+        <div class="login-button-div">
+          <button id="google" class="login-button" md-raised-button (click)="firebaseAuthService.loginGoogle()"> Logga in med Google</button>
+        </div>
+
+        <!--Divider--->
+        <div class="divider">
+          <hr class="left"/><b style="color:#888888">ELLER</b><hr class="right" />
+        </div>
+
+        <!--Login Form--->
+        <form (ngSubmit)="submitLogin()">
+          <md-input-container>
+            <input mdInput placeholder="Email" [(ngModel)]="email" name="email" spellcheck="false">
+          </md-input-container>
+          <md-input-container>
+            <input mdInput placeholder="Lösenord" type="password" [(ngModel)]="password" name="password">
+          </md-input-container>
+          <div class="login-button-div">
+            <button md-raised-button color="primary" id="email" class="login-button"> Logga in med Email</button>
+          </div>
+        </form>
+      </md-tab>
+      <!--Sign Up Tab--->
+      <md-tab label="Skapa konto">
+        <i id="lock" class="material-icons md-96">lock_outline</i>
+        <form (ngSubmit)="signUpSubmit()">
+          <!--Email-->
+          <md-input-container>
+            <input mdInput placeholder="Email" [(ngModel)]="email" name="email" required [formControl]="emailFormControl" spellcheck="false">
+            <md-error *ngIf="emailFormControl.hasError('pattern')">
+              Felaktigt format.
+            </md-error>
+            <md-error *ngIf="emailFormControl.hasError('required')">
+              Email krävs.
+            </md-error>
+          </md-input-container>
+          <!--Password-->
+          <md-input-container>
+            <input mdInput placeholder="Lösenord" type="password" [(ngModel)]="password" name="password" required [formControl]="passwordFormControl">
+            <md-error *ngIf="passwordFormControl.hasError('required')">
+              Lösenord krävs.
+            </md-error>
+            <md-error *ngIf="passwordFormControl.hasError('minlength')">
+              Lösenordet är för kort.
+            </md-error>
+          </md-input-container>
+          <div class="login-button-div">
+            <button md-raised-button color="primary" id="sign-up" [disabled]="passwordFormControl.errors||emailFormControl.errors">Skapa konto</button>
+          </div>
+        </form>
+      </md-tab>
+    </md-tab-group>
   </md-card>
 </div>

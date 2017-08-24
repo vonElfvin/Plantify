@@ -16,7 +16,7 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 
 // Material imports
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule, MdRadioModule} from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule } from '@angular/material';
 import 'hammerjs';
 
 // Component imports
@@ -29,15 +29,13 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { AdComponent } from './components/ad/ad.component';
 import { LoginComponent } from './components/login/login.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'annonser', component: AdListComponent},
   {path: 'skapa-annons', component: AdCreateComponent},
   {path: 'annons/:id', component: AdComponent},
-  {path: 'logga-in', component: LoginComponent},
-  {path: 'skapa-konto', component: SignUpComponent}
+  {path: 'logga-in', component: LoginComponent}
 ];
 
 @NgModule({
@@ -50,8 +48,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     SettingsComponent,
     AdComponent,
-    LoginComponent,
-    SignUpComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +56,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
-    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, // Material modules
+    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, // Material modules
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     FlexLayoutModule,

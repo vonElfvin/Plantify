@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ad.component.css']
 })
 export class AdComponent implements OnInit {
+  ad: any;
 
   constructor() { }
 

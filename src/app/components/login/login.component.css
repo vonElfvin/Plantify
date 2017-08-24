@@ -1,3 +1,11 @@
+#center-div {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
 #login-md-card{
   color:white;
 }
@@ -15,7 +23,7 @@
   width:300px;
 }
 
-#login-form{
+form{
   color:black;
 }
 
@@ -23,6 +31,7 @@
   color:black;
   text-align: center;
   display: block;
+  margin-top:20px;
 }
 
 #google{
@@ -36,6 +45,15 @@
 }
 
 #email{
+  background-image: url('../../../assets/images/envelope.svg');
+  background-repeat: no-repeat;
+  background-position: 10px;
+  background-size: 25px;
+}
+
+#sign-up{
+  padding:5px;
+  width:300px;
   background-image: url('../../../assets/images/envelope.svg');
   background-repeat: no-repeat;
   background-position: 10px;
@@ -66,4 +84,11 @@
 
 md-input-container {
   display:block;
+}
+/deep/ .mat-tab-label:focus{
+  background-color: #ffffff !important;
+}
+
+/deep/ .mat-tab-body-content {
+  overflow: hidden!important;
 }

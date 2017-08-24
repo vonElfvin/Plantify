@@ -4,22 +4,20 @@ import * as firebase from 'firebase/app';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Router} from '@angular/router';
 import { Location } from '@angular/common';
-import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Injectable()
 export class FirebaseAuthService {
   error: any;
   user: Observable<firebase.User>;
 
-  constructor(public afAuth: AngularFireAuth,
+  constructor(public angularFireAuth: AngularFireAuth,
               private router: Router,
-              private location: Location,
-              private flashMessagesService: FlashMessagesService) {
-    this.user = afAuth.authState;
+              private location: Location) {
+    this.user = angularFireAuth.authState;
   }
 
   loginGoogle() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((success) => {
+    this.angularFireAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then((success) => {
       console.log(success);
       this.location.back();
     }).catch((error) => {
@@ -29,7 +27,7 @@ export class FirebaseAuthService {
   }
 
   loginFacebook() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((success) => {
+    this.angularFireAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then((success) => {
       console.log(success);
       this.location.back();
     }).catch((error) => {
@@ -38,22 +36,20 @@ export class FirebaseAuthService {
     });
   }
 
-  loginEmailAndPassword(formData) {
-    if (formData.valid) {
-      console.log(formData.value.email);
-      this.afAuth.auth.signInWithEmailAndPassword(formData.value.email, formData.value.password)
-        .then((success) => {
-          console.log(success);
-          this.location.back();
-        }).catch((error) => {
-        console.log(error);
-      });
-    }
+  loginEmailAndPassword(email, password) {
+    console.log(email);
+    this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
+      .then((success) => {
+        console.log(success);
+        this.location.back();
+      }).catch((error) => {
+      console.log(error);
+    });
   }
 
   signUpEmailAndPassword(email, password) {
     console.log(email);
-    this.afAuth.auth
+    this.angularFireAuth.auth
     .createUserWithEmailAndPassword(email, password)
     .then((success) => {
       console.log(success);
@@ -65,6 +61,6 @@ export class FirebaseAuthService {
   }
 
   logout() {
-    this.afAuth.auth.signOut();
+    this.angularFireAuth.auth.signOut();
   }
 }
