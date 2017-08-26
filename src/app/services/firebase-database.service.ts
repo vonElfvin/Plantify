@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
+import { UUID } from 'angular2-uuid';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import { FirebaseAuthService } from './firebase-auth.service';
 import * as firebase from 'firebase/app';
@@ -21,21 +21,23 @@ export class FirebaseDatabaseService {
     }) as FirebaseListObservable<Ad[]>;
   }
 
-  createAd(ad) {
+  createAd(ad, image, format) {
     const storageRef = firebase.storage().ref();
-    for (const selectedFile of [(<HTMLInputElement>document.getElementById('image')).files[0]]) {
-      const image_path = `/${this.folder}/${selectedFile.name}`;
-      const iRef = storageRef.child(image_path);
-      iRef.put(selectedFile).then((snapshot) => {
-        ad.image = selectedFile.name;
-        ad.image_path = image_path;
-        ad.author = this.firebaseAuthService.angularFireAuth.auth.currentUser.uid;
-        ad.profile_img_url = this.firebaseAuthService.angularFireAuth.auth.currentUser.photoURL;
-        ad.date_time = firebase.database.ServerValue.TIMESTAMP;
-        this.router.navigate(['/annonser']);
-        return this.ads.push(ad);
-      });
-    }
+    const selectedFile = image;
+    const image_name = UUID.UUID() + '.' + format;
+    const image_path = `/${this.folder}/${image_name}`;
+    const iRef = storageRef.child(image_path);
+    console.log(storageRef);
+    console.log(image_path);
+    iRef.putString(selectedFile, 'data_url').then((snapshot) => {
+      ad.image = image_name;
+      ad.image_path = image_path;
+      ad.author = this.firebaseAuthService.angularFireAuth.auth.currentUser.uid;
+      ad.profile_img_url = this.firebaseAuthService.angularFireAuth.auth.currentUser.photoURL;
+      ad.date_time = firebase.database.ServerValue.TIMESTAMP;
+      this.router.navigate(['/annonser']);
+      return this.ads.push(ad);
+    });
   }
 
   getAds() {

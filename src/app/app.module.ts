@@ -13,6 +13,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { AppErrorHandler } from './common/app-error-handler';
 import { ErrorHandler } from '@angular/core';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
 // Material imports
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     SettingsComponent,
     AdComponent,
-    LoginComponent
+    LoginComponent,
+    ImageCropperComponent,
   ],
   imports: [
     BrowserModule,

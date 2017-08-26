@@ -1,33 +1,31 @@
-<div class="container">
-  <md-toolbar color="primary">
-    <button md-button routerLink="/">
-      <md-icon>home</md-icon>
-      Plantify
-    </button>
-    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-      <button md-button [routerLink]="['annonser']">Annonser</button>
-      <button md-button [routerLink]="['skapa-annons']">Skapa annons</button>
-    </div>
-    <!-- This fills the remaining space of the current row -->
-    <span class="fill-remaining-space"></span>
-    <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-      <button *ngIf="!(firebaseAuthService.angularFireAuth.authState | async)" md-button [routerLink]="['logga-in']">Logga in</button>
-      <button *ngIf="(firebaseAuthService.angularFireAuth.authState | async)" md-button (click)="firebaseAuthService.logout()">Logga ut</button>
-    </div>
-    <button md-button (click)="sidenav.toggle()" fxHide="false" fxHide.gt-sm>
-      <md-icon>menu</md-icon>
-    </button>
-  </md-toolbar>
-  <md-sidenav-container>
-    <md-sidenav mode="push" #sidenav>
-      <md-nav-list>
-        <a md-list-item [routerLink]="['annonser']" (click)="sidenav.close()">Annonser</a>
-        <a md-list-item [routerLink]="['skapa-annons']" (click)="sidenav.close()">Skapa annons</a>
-        <hr>
-        <a *ngIf="!(firebaseAuthService.angularFireAuth.authState | async)" md-list-item [routerLink]="['logga-in']" (click)="sidenav.close()">Logga in</a>
-        <a *ngIf="(firebaseAuthService.angularFireAuth.authState | async)" md-list-item (click)="firebaseAuthService.logout()" (click)="sidenav.close()">Logga ut</a>
-      </md-nav-list>
-    </md-sidenav>
-  <router-outlet></router-outlet>
-  </md-sidenav-container>
-</div>
+<md-toolbar color="primary">
+  <button md-button routerLink="/">
+    <md-icon>home</md-icon>
+    Plantify
+  </button>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button md-button [routerLink]="['annonser']">Annonser</button>
+    <button md-button [routerLink]="['skapa-annons']">Skapa annons</button>
+  </div>
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space"></span>
+  <div fxLayout="row" fxShow="false" fxShow.gt-sm>
+    <button *ngIf="!(firebaseAuthService.angularFireAuth.authState | async)" md-button [routerLink]="['logga-in']">Logga in</button>
+    <button *ngIf="(firebaseAuthService.angularFireAuth.authState | async)" md-button (click)="firebaseAuthService.logout()">Logga ut</button>
+  </div>
+  <button md-button (click)="sidenav.toggle()" fxHide="false" fxHide.gt-sm>
+    <md-icon>menu</md-icon>
+  </button>
+</md-toolbar>
+<md-sidenav-container>
+  <md-sidenav mode="push" #sidenav>
+    <md-nav-list>
+      <a md-list-item [routerLink]="['annonser']" (click)="sidenav.close()">Annonser</a>
+      <a md-list-item [routerLink]="['skapa-annons']" (click)="sidenav.close()">Skapa annons</a>
+      <hr>
+      <a *ngIf="!(firebaseAuthService.angularFireAuth.authState | async)" md-list-item [routerLink]="['logga-in']" (click)="sidenav.close()">Logga in</a>
+      <a *ngIf="(firebaseAuthService.angularFireAuth.authState | async)" md-list-item (click)="firebaseAuthService.logout()" (click)="sidenav.close()">Logga ut</a>
+    </md-nav-list>
+  </md-sidenav>
+<router-outlet></router-outlet>
+</md-sidenav-container>

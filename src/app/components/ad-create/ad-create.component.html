@@ -1,45 +1,49 @@
-<div class="center-div">
-  <md-card id="ad-create-md-card" style="display:block;">
-    <md-card-content>
-      <h2>Skapa annons</h2>
-      <form #formData="ngForm" (ngSubmit)="createAd()">
-        <!--Name-->
-        <md-input-container class="create-ad-input-container">
-          <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
-        </md-input-container>
+<md-card id="ad-create-md-card">
+  <form #formData="ngForm" (ngSubmit)="createAd()">
+    <div fxLayout fxLayout.xs="column" fxLayoutGap="25px" class="one">
+      <div  fxFlex="50">
+        <h2>Skapa annons</h2>
+          <!--Name-->
+          <md-input-container class="create-ad-input-container">
+            <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
+          </md-input-container>
 
-        <!--Title-->
-        <md-input-container class="create-ad-input-container">
-          <input mdInput placeholder="Titel" [(ngModel)]="title" name="title" spellcheck="false">
-        </md-input-container>
+          <!--Title-->
+          <md-input-container class="create-ad-input-container">
+            <input mdInput placeholder="Titel" [(ngModel)]="title" name="title" spellcheck="false">
+          </md-input-container>
 
-        <!--Description-->
-        <md-input-container class="create-ad-input-container">
-          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow></textarea>
-        </md-input-container>
+          <!--Description-->
+          <md-input-container class="create-ad-input-container">
+            <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow></textarea>
+          </md-input-container>
 
-        <!--Image-->
-        <div id="image-div">
-          <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
-            Ladda upp bild
-          </button>
-          <input id="image" type="file" [(ngModel)]="image" name="image" style="display:none;">
-        </div>
+          <!--Image-->
+          <div id="image-div">
+            <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
+              Ladda upp bild
+            </button>
+            <input id="image" type="file" [(ngModel)]="image" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
+          </div>
 
-        <!--Type-->
-        <div id="radio-button-div">
-          <md-radio-group [(ngModel)]="type" name="type" style="text-align:center; display:block;">
-            <md-radio-button color="primary" value="sell">Säljes</md-radio-button>
-            <span style="margin:20px;"></span>
-            <md-radio-button value="trade">Bytes</md-radio-button>
-          </md-radio-group>
-        </div>
+          <!--Type-->
+          <div id="radio-button-div">
+            <md-radio-group [(ngModel)]="type" name="type" style="text-align:center; display:block;">
+              <md-radio-button color="primary" value="sell">Säljes</md-radio-button>
+              <span style="margin:20px;"></span>
+              <md-radio-button value="trade">Bytes</md-radio-button>
+            </md-radio-group>
+          </div>
 
         <!--Submit button-->
         <div id="submit-button-div">
           <button md-raised-button color="primary" id="submit-button">Skapa annons</button>
         </div>
-      </form>
-    </md-card-content>
-  </md-card>
-</div>
+      </div>
+      <div fxFlex="50" class="two">
+        <img-cropper  #cropper [image]="image" [settings]="cropperSettings"></img-cropper>
+        <img *ngIf="selected" [src]="image.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+      </div>
+    </div>
+  </form>
+</md-card>

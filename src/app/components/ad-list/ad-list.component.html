@@ -6,7 +6,9 @@
         <md-card-title style="margin-bottom:10px;">{{ad.title}}</md-card-title>
         <md-card-subtitle>{{ad.name}}</md-card-subtitle>
       </md-card-header>
-      <div [ngStyle]="{'background-image': 'url(' + ad.image_url + ')'}"
+      <div *ngIf="!ad.image_url"
+           style="width:100%; padding-bottom:100%;"></div>
+      <div *ngIf="ad.image_url" [ngStyle]="{'background-image': 'url(' + ad.image_url + ')'}"
            style="width:100%; padding-bottom:100%;
            background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"></div>
     </md-card>
