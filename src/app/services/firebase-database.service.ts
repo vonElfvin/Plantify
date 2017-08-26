@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 export class FirebaseDatabaseService {
   folder: string;
   ads: FirebaseListObservable<any[]>;
+  ad: FirebaseObjectObservable<any>;
 
   constructor(private angularFireDatabase: AngularFireDatabase, private firebaseAuthService: FirebaseAuthService, private router: Router ) {
     this.folder = 'ad-images';
@@ -41,10 +42,15 @@ export class FirebaseDatabaseService {
     return this.ads;
   }
 
+  getAd(id) {
+    return this.angularFireDatabase.object('/ads/' + id) as FirebaseObjectObservable<Ad>;
+  }
+
   getImageUrl(ad) {
     const storageRef = firebase.storage().ref();
     storageRef.child(ad.image_path).getDownloadURL().then((url) => {
       ad.image_url = url;
+      console.log(url);
     }).catch((error) => {
       console.log(error.message);
     });
