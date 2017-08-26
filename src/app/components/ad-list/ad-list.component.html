@@ -1,6 +1,6 @@
 <span *ngIf="ads">
   <div class="col-md-3"  *ngFor="let ad of ads.reverse()" style="padding:0px; border: 5px solid transparent">
-    <md-card class="ad-card"  [routerLink]="['/annons/'+ ad.$key]" style="width:100%; padding:12px; margin:0px;">
+    <md-card class="ad-card"  class="ripplelink" [routerLink]="['/annons/'+ ad.$key]" style="width:100%; padding:12px; margin:0px;">
       <md-card-header>
         <img md-card-avatar class="header-image" src="{{ad.profile_img_url}}">
         <md-card-title style="margin-bottom:10px;">{{ad.title}}</md-card-title>
@@ -9,15 +9,6 @@
       <div [ngStyle]="{'background-image': 'url(' + ad.image_url + ')'}"
            style="width:100%; padding-bottom:100%;
            background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"></div>
-      <!--<img md-card-image class="crop" src="https://ssl.c.photoshelter.com/img-get/I0000uFfJuJSRrQg/t/200/I0000uFfJuJSRrQg.jpg" style="">-->
-      <md-card-content>
-        <p *ngIf="ad.description.length>30">
-          {{ ad.description | slice:0:29 }}...
-        </p>
-        <p *ngIf="ad.description.length<=30">
-          {{ ad.description }}
-        </p>
-      </md-card-content>
     </md-card>
   </div>
 </span>

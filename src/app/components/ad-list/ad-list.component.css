@@ -1,0 +1,7 @@
+.ripplelink:hover{
+  cursor: pointer;
+  z-index:1000;
+  box-shadow:rgba(0, 0, 0, 0.3) 0 4px 4px 0;
+  -webkit-box-shadow:rgba(0, 0, 0, 0.3) 0 4px 4px 0;
+  -moz-box-shadow:rgba(0, 0, 0, 0.3) 0 4px 4px 0;
+}
