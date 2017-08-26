@@ -23,6 +23,7 @@ export class AdCreateComponent implements OnInit {
   cropperSettings: CropperSettings;
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
+  format: any;
   selected = false;
 
   constructor(private firebaseDatabaseService: FirebaseDatabaseService,
@@ -35,6 +36,7 @@ export class AdCreateComponent implements OnInit {
     this.cropperSettings.canvasWidth = 325;
     this.cropperSettings.canvasHeight = 325;
     this.cropperSettings.noFileInput = true;
+    this.cropperSettings.preserveSize = true;
     this.image = {};
   }
 
@@ -44,22 +46,16 @@ export class AdCreateComponent implements OnInit {
   createAd() {
     const ad = {
       title: this.title,
-      name: this.name,
       description: this.description,
       type: this.type
     };
-    const file = (<HTMLInputElement>document.getElementById('image')).files[0];
-    this.firebaseDatabaseService.createAd(ad, this.image.image, file.name.split('.')[1]);
-  }
-
-  print() {
-    const selectedFile = (<HTMLInputElement>document.getElementById('image')).files[0];
-    console.log(selectedFile.name.split('.')[1]);
+    this.firebaseDatabaseService.createAd(ad, this.image.image, this.format);
   }
 
   fileChangeListener($event) {
     const image: any = new Image();
     const file: File = $event.target.files[0];
+    this.format = file.name.split('.')[1];
     const myReader: FileReader = new FileReader();
     const that = this;
     myReader.onloadend = function (loadEvent: any) {

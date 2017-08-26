@@ -1,12 +1,8 @@
 <md-card id="ad-create-md-card">
   <form #formData="ngForm" (ngSubmit)="createAd()">
-    <div fxLayout fxLayout.xs="column" fxLayoutGap="25px" class="one">
-      <div  fxFlex="50">
+    <div fxLayout fxLayout.xs="column" fxLayoutGap="25px">
+      <div fxFlex="33">
         <h2>Skapa annons</h2>
-          <!--Name-->
-          <md-input-container class="create-ad-input-container">
-            <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
-          </md-input-container>
 
           <!--Title-->
           <md-input-container class="create-ad-input-container">
@@ -40,9 +36,12 @@
           <button md-raised-button color="primary" id="submit-button">Skapa annons</button>
         </div>
       </div>
-      <div fxFlex="50" class="two">
-        <img-cropper  #cropper [image]="image" [settings]="cropperSettings"></img-cropper>
-        <img *ngIf="selected" [src]="image.image" [width]="cropperSettings.croppedWidth" [height]="cropperSettings.croppedHeight">
+      <div fxFlex="33">
+        <img-cropper  #cropper [image]="image" [settings]="cropperSettings" style="max-height: 300px; max-width: 300px;"></img-cropper>
+        <img *ngIf="selected" [src]="image.image" style="width:100%; height: auto;">
+      </div>
+      <div fxFlex="33" style="background-color: gray;">
+
       </div>
     </div>
   </form>

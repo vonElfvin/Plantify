@@ -1,16 +1,14 @@
 <span *ngIf="ads">
-  <div class="col-md-3"  *ngFor="let ad of ads.reverse()" style="padding:0px; border: 5px solid transparent">
-    <md-card class="ad-card"  class="ripplelink" [routerLink]="['/annons/'+ ad.$key]" style="width:100%; padding:12px; margin:0px;">
-      <md-card-header>
-        <img md-card-avatar class="header-image" src="{{ad.profile_img_url}}">
-        <md-card-title style="margin-bottom:10px;">{{ad.title}}</md-card-title>
-        <md-card-subtitle>{{ad.name}}</md-card-subtitle>
-      </md-card-header>
-      <div *ngIf="!ad.image_url"
-           style="width:100%; padding-bottom:100%;"></div>
-      <div *ngIf="ad.image_url" [ngStyle]="{'background-image': 'url(' + ad.image_url + ')'}"
-           style="width:100%; padding-bottom:100%;
-           background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"></div>
-    </md-card>
-  </div>
+  <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap">
+    <div fxFlex="25"  *ngFor="let ad of ads.reverse()"  style="border: 5px solid transparent;">
+      <md-card class="ad-card ripplelink" [routerLink]="['/annons/'+ ad.$key]">
+        <md-card-header>
+          <img md-card-avatar class="header-image" src="{{ad.profile_img_url}}">
+          <md-card-title style="margin-bottom:10px;">{{ad.title}}</md-card-title>
+          <md-card-subtitle>{{ad.name}}</md-card-subtitle>
+        </md-card-header>
+        <img *ngIf="ad.image_url" src="{{ad.image_url}}" style="width:100%;">
+      </md-card>
+    </div>
+    </div>
 </span>
