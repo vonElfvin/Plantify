@@ -19,6 +19,9 @@ export class AdCreateComponent implements OnInit {
   title: string;
   description: string;
   type: string;
+  price: number;
+  deliveryCost: number;
+  freeDelivery = false;
   image: any;
   cropperSettings: CropperSettings;
   @ViewChild('cropper', undefined)
@@ -61,5 +64,13 @@ export class AdCreateComponent implements OnInit {
 
     };
     myReader.readAsDataURL(file);
+  }
+
+  resetDeliveryCost() {
+    this.deliveryCost = null;
+  }
+
+  resetPrice() {
+    this.price = null;
   }
 }

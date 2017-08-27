@@ -28,4 +28,12 @@ export class AdListComponent implements OnInit {
   onAdClick(ad) {
     this.router.navigate([`/annons/${ad.$key}`]);
   }
+
+  addFavorite($key) {
+    console.log($key);
+  }
+
+  removeFavorite($key) {
+    console.log($key);
+  }
 }
