@@ -1,4 +1,4 @@
-import { CanActivate, Router } from '@angular/router';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/do';
@@ -11,15 +11,13 @@ export class AuthGuard implements CanActivate {
 
   constructor(private firebaseAuthService: FirebaseAuthService, private router: Router) {}
 
-  canActivate(): Observable<boolean> {
-    return Observable.from(this.firebaseAuthService.angularFireAuth.authState)
-      .take(1)
-      .map(state => !!state)
-      .do(authenticated => {
-        if (!authenticated) {
-          this.router.navigate([ '/logga-in' ]);
-        }
-      });
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const canLogin = !!this.firebaseAuthService.authState;
+    if (canLogin) {
+      return true;
+    }
+    this.firebaseAuthService.redirectUrl = state.url;
+    this.router.navigate(['logga-in']);
+    return false;
   }
-
 }
