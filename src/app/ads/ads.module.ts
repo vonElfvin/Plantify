@@ -9,6 +9,7 @@ import {
   MdButtonModule,
   MdCardModule, MdCheckboxModule,
   MdGridListModule, MdIconModule, MdInputModule, MdListModule, MdMenuModule, MdRadioModule, MdSidenavModule,
+  MdSlideToggleModule,
   MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -18,18 +19,17 @@ import {ImageCropperModule} from 'ng2-img-cropper';
 @NgModule({
   imports: [
     CommonModule,
-    MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
+    MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule, MdSlideToggleModule,
     MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, // Material modules
     FlexLayoutModule,
     FormsModule,
     ImageCropperModule
-
   ],
   declarations: [
     AdComponent,
     AdListComponent,
     AdCreateComponent,
-    AdEditComponent,
+    AdEditComponent
   ],
   providers: [
     AdService

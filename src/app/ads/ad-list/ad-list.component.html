@@ -1,16 +1,19 @@
 <span *ngIf="ads">
   <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap">
     <div fxFlex="25" fxFlex.md="33" fxFlex.sm="50" *ngFor="let ad of ads.reverse()"  style="border: 5px solid transparent;">
-      <md-card class="ripplelink" (click)="onAdClick(ad)">
+      <md-card class="ripplelink">
         <md-card-header>
           <img md-card-avatar class="header-image" src="{{ad.profile_img_url}}">
-          <md-card-title style="margin-bottom:10px;"  [routerLink]="['/annons/'+ ad.$key]">{{ad.title}}</md-card-title>
+          <md-card-title style="margin-bottom:10px;">{{ad.title}}</md-card-title>
           <md-card-subtitle>{{ad.name}}</md-card-subtitle>
         </md-card-header>
         <md-card-content>
-          <img *ngIf="ad.image_url" src="{{ad.image_url}}" style="width:100%;" [routerLink]="['/annons/'+ ad.$key]">
-          <md-icon (click)="addFavorite(ad.$key)">favorite_border</md-icon>
-          <md-icon (click)="removeFavorite(ad.$key)" style="fill:red; color:red;">favorite</md-icon>
+          <img *ngIf="ad.image_url" src="{{ad.image_url}}" style="width:100%;">
+          <div class="action-div">
+            <md-icon (click)="addFavorite(ad.$key)">favorite_border</md-icon>
+            <md-icon (click)="removeFavorite(ad.$key)" style="fill:red; color:red;">favorite</md-icon>
+            <span class="fill-remaining-space"></span>
+          </div>
         </md-card-content>
       </md-card>
     </div>

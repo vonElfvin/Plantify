@@ -9,3 +9,8 @@
 md-card{
   padding:0;
 }
+
+.action-div {
+  display: flex;
+  padding: 5px;
+}
