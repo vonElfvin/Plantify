@@ -15,12 +15,15 @@ import {
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {ImageCropperModule} from 'ng2-img-cropper';
+import {AdsRoutingModule} from './ads-routing.module';
 
 @NgModule({
   imports: [
+    AdsRoutingModule,
     CommonModule,
-    MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule, MdSlideToggleModule,
-    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, // Material modules
+    MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
+    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule,
+    MdSlideToggleModule, // Material modules
     FlexLayoutModule,
     FormsModule,
     ImageCropperModule

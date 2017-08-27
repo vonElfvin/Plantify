@@ -29,14 +29,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { AdComponent } from './ads/ad/ad.component';
 import { LoginComponent } from './login/login.component';
 import { AdsModule } from './ads/ads.module';
+import {AppRoutingModule} from './app-routing.module';
 
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'annonser', component: AdListComponent},
-  {path: 'skapa-annons', component: AdCreateComponent},
-  {path: 'annons/:id', component: AdComponent},
-  {path: 'logga-in', component: LoginComponent}
-];
+
 
 @NgModule({
   declarations: [
@@ -47,13 +42,13 @@ const appRoutes: Routes = [
   ],
   imports: [
     AdsModule,
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
     MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule, MdSliderModule, MdSlideToggleModule,
     MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, // Material modules
-    RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     FlexLayoutModule,
     ReactiveFormsModule,
