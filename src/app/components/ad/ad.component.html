@@ -1,16 +1,10 @@
 <div *ngIf="ad">
-  <h2 class="page-header">{{ad.title}} <small>{{ad.name}}</small></h2>
-  <div class="row">
-    <div class="col-md-4">
-      <div [ngStyle]="{'background-image': 'url('+ad.image_url+')'}" style="width:100%; padding-bottom:100%;
-      background-size: cover; background-position: 50% 50%; background-repeat: no-repeat;"></div>
+  <div fxLayout>
+    <div fxFlex="25">
+      <img *ngIf="ad.image_url" src="{{ad.image_url}}" style="width:100%">
     </div>
-    <div class="col-md-8">
-      <ul class="list-group">
-        <li class="list-group-item">Beskrivning: {{ad.description}}</li>
-      </ul>
-      <!--<a class="btn btn-default" [routerLink]="['/edit-listing/'+listing.$key]">Redigera</a>-->
-      <!--<a (click)="onDeleteClick()" class="btn btn-default btn-danger">Radera</a>-->
+    <div fxFlex="50">
+      awdawd
     </div>
   </div>
 </div>

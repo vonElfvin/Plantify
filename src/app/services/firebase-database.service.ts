@@ -22,6 +22,7 @@ export class FirebaseDatabaseService {
   }
 
   createAd(ad, image, format) {
+    console.log(image);
     const storageRef = firebase.storage().ref();
     const selectedFile = image;
     const image_name = UUID.UUID() + '.' + format;

@@ -17,7 +17,7 @@ import {ImageCropperComponent, CropperSettings} from 'ng2-img-cropper';
 
 // Material imports
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule } from '@angular/material';
+import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, MdSliderModule, MdSlideToggleModule } from '@angular/material';
 import 'hammerjs';
 
 // Component imports
@@ -57,7 +57,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
-    MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
+    MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule, MdSliderModule, MdSlideToggleModule,
     MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, // Material modules
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),

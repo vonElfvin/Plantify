@@ -4,37 +4,59 @@
       <div fxFlex="33">
         <h2>Skapa annons</h2>
 
-          <!--Name-->
-          <md-input-container class="create-ad-input-container">
-            <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
+        <!--Name-->
+        <md-input-container class="create-ad-input-container">
+          <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
+        </md-input-container>
+
+        <!--Title-->
+        <md-input-container class="create-ad-input-container">
+          <input mdInput placeholder="Titel" [(ngModel)]="title" name="title" spellcheck="false">
+        </md-input-container>
+
+        <!--Description-->
+        <md-input-container class="create-ad-input-container">
+          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow></textarea>
+        </md-input-container>
+
+        <!--Image-->
+        <div id="image-div">
+          <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
+            Ladda upp bild
+          </button>
+          <input id="image" type="file" [(ngModel)]="image" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
+        </div>
+
+        <!--Type-->
+        <div id="radio-button-div">
+          <md-radio-group [(ngModel)]="type" name="type" style="text-align:center; display:block;" (change)="resetPrice()">
+            <md-radio-button value="sell" color="primary">Säljes</md-radio-button>
+            <md-radio-button value="trade">Bytes</md-radio-button>
+            <md-radio-button value="gift">Skänkes</md-radio-button>
+          </md-radio-group>
+        </div>
+
+        <!--Price-->
+        <md-input-container *ngIf="type=='sell'" class="create-ad-input-container">
+          <input mdInput placeholder="Pris" [(ngModel)]="price" name="price" spellcheck="false" type="number" min="0">
+          <span class="kr">kr</span>
+        </md-input-container>
+
+        <!--Delivery-->
+        <div style="width:100%; display: flex;">
+          <md-input-container style="width:50%">
+            <div *ngIf="!freeDelivery">
+              <input mdInput placeholder="Fraktkostand" [(ngModel)]="deliveryCost" name="deliveryCost" spellcheck="false" type="number" min="0">
+              <span class="kr">kr</span>
+            </div>
+            <div *ngIf="freeDelivery">
+              <input mdInput placeholder="Fri frakt" disabled=true [(ngModel)]="deliveryCost" name="deliveryCost" spellcheck="false" type="number" min="0">
+            </div>
           </md-input-container>
+          <span class="fill-remaining-space"></span>
+          <md-slide-toggle ngDefaultControl [(ngModel)]="freeDelivery" name="freeDelivery" style="margin-top:20px;" (change)="resetDeliveryCost()">Fri frakt</md-slide-toggle>
+        </div>
 
-          <!--Title-->
-          <md-input-container class="create-ad-input-container">
-            <input mdInput placeholder="Titel" [(ngModel)]="title" name="title" spellcheck="false">
-          </md-input-container>
-
-          <!--Description-->
-          <md-input-container class="create-ad-input-container">
-            <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow></textarea>
-          </md-input-container>
-
-          <!--Image-->
-          <div id="image-div">
-            <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
-              Ladda upp bild
-            </button>
-            <input id="image" type="file" [(ngModel)]="image" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
-          </div>
-
-          <!--Type-->
-          <div id="radio-button-div">
-            <md-radio-group [(ngModel)]="type" name="type" style="text-align:center; display:block;">
-              <md-radio-button color="primary" value="sell">Säljes</md-radio-button>
-              <span style="margin:20px;"></span>
-              <md-radio-button value="trade">Bytes</md-radio-button>
-            </md-radio-group>
-          </div>
 
         <!--Submit button-->
         <div id="submit-button-div">

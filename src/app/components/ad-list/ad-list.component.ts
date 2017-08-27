@@ -25,4 +25,12 @@ export class AdListComponent implements OnInit {
       this.ads = ads;
     });
   }
+
+  addFavorite($key) {
+    console.log($key);
+  }
+
+  removeFavorite($key) {
+    console.log($key);
+  }
 }
