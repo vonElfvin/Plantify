@@ -12,6 +12,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import { AppErrorHandler } from './core/app-error-handler';
 import { ErrorHandler } from '@angular/core';
 import { FlashMessagesModule } from 'angular2-flash-messages';
+import { AuthGuard } from './core/auth/auth.service';
 
 
 // Material imports
@@ -57,6 +58,7 @@ import {AppRoutingModule} from './app-routing.module';
   providers: [
     // Services
     FirebaseAuthService,
+    AuthGuard,
     // Imports
     AngularFireAuth,
     AngularFireDatabase,

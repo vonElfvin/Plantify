@@ -5,6 +5,7 @@ import { AdCreateComponent } from './ad-create/ad-create.component';
 import { AdListComponent } from './ad-list/ad-list.component';
 import { AdComponent } from './ad/ad.component';
 import { AdService } from './shared/ad.service';
+import { AuthGuard } from '../core/auth/auth.service';
 import {
   MdButtonModule,
   MdCardModule, MdCheckboxModule,
@@ -35,7 +36,8 @@ import {AdsRoutingModule} from './ads-routing.module';
     AdEditComponent
   ],
   providers: [
-    AdService
+    AdService,
+    AuthGuard
   ]
 })
 export class AdsModule { }
