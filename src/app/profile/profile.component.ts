@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FirebaseAuthService} from '../core/auth/firebase-auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  displayName: string;
+
+  constructor(private firebaseAuthService: FirebaseAuthService) { }
 
   ngOnInit() {
+    this.displayName = this.firebaseAuthService.currentUserDisplayName;
+    console.log(this.firebaseAuthService.currentUser);
+
+
   }
 
 }

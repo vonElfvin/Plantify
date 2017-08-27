@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit {
   }
 
   submitLogin() {
-    this.firebaseAuthService.loginEmailAndPassword(this.email, this.password);
+    this.firebaseAuthService.emailLogin(this.email, this.password);
   }
 
   signUpSubmit() {
-    this.firebaseAuthService.signUpEmailAndPassword(this.email, this.password);
+    this.firebaseAuthService.emailSignUp(this.email, this.password);
   }
 }

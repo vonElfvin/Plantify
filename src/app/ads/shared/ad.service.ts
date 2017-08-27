@@ -19,8 +19,8 @@ export class AdService extends FirebaseDatabaseService<Ad> {
   createAd(ad, image: string): any {
     return this.createBase64Image(image, 'ad-images').then(snapshot => {
       ad.image_path = snapshot.metadata.fullPath;
-      ad.author = this.firebaseAuthService.angularFireAuth.auth.currentUser.uid;
-      ad.profile_img_url = this.firebaseAuthService.angularFireAuth.auth.currentUser.photoURL;
+      ad.author = this.firebaseAuthService.currentUserId;
+      ad.profile_img_url = this.firebaseAuthService.currentUser.photoURL;
       ad.date_time = this.getTimeStamp();
       return this.createItem(ad);
     });
