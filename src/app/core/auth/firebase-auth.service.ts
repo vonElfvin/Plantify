@@ -4,6 +4,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase';
 import { Location } from '@angular/common';
+import {Subject} from 'rxjs/Subject';
+import {Observable} from 'rxjs/Observable';
 
 
 
@@ -20,6 +22,10 @@ export class FirebaseAuthService {
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth;
     });
+
+
+
+
   }
 
   // Returns true if user is logged in
@@ -33,7 +39,7 @@ export class FirebaseAuthService {
   }
 
   // Returns
-  get currentUserObservable(): any {
+  get currentUserObservable(): Observable<any> {
     return this.afAuth.authState;
   }
 
@@ -49,9 +55,12 @@ export class FirebaseAuthService {
 
   // Returns current user display name or Guest
   get currentUserDisplayName(): string {
-    if (!this.authState) { return 'Guest';
-    } else if (this.currentUserAnonymous) { return 'Anonymous';
-    } else { return this.authState['displayName'] || 'User without a Name'; }
+    if (!this.authState) {
+      return 'Guest';
+    } else if (this.currentUserAnonymous) {
+      return 'Anonymous';
+    } else {
+      return this.authState['displayName'] || 'User without a Name'; }
   }
 
   //// Social Auth ////

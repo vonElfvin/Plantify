@@ -13,10 +13,12 @@ export class ProfileComponent implements OnInit {
   constructor(private firebaseAuthService: FirebaseAuthService) { }
 
   ngOnInit() {
-    this.displayName = this.firebaseAuthService.currentUserDisplayName;
-    console.log(this.firebaseAuthService.currentUser);
 
-
+    this.firebaseAuthService.currentUserObservable.subscribe(
+      res => {
+        this.displayName = res.displayName;
+      }
+    );
   }
 
 }
