@@ -9,17 +9,21 @@ import {
   MdButtonModule,
   MdCardModule, MdCheckboxModule,
   MdGridListModule, MdIconModule, MdInputModule, MdListModule, MdMenuModule, MdRadioModule, MdSidenavModule,
+  MdSlideToggleModule,
   MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule} from '@angular/forms';
 import {ImageCropperModule} from 'ng2-img-cropper';
+import {AdsRoutingModule} from './ads-routing.module';
 
 @NgModule({
   imports: [
+    AdsRoutingModule,
     CommonModule,
     MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
-    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, // Material modules
+    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule,
+    MdSlideToggleModule, // Material modules
     FlexLayoutModule,
     FormsModule,
     ImageCropperModule
