@@ -24,19 +24,16 @@ export class AdCreateComponent implements OnInit {
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
   format: any;
-  selected = false;
 
   constructor(private firebaseDatabaseService: FirebaseDatabaseService,
               private firebaseAuthService: FirebaseAuthService) {
     this.type = 'sell';
 
     this.cropperSettings = new CropperSettings();
-    this.cropperSettings.croppedWidth = 325;
-    this.cropperSettings.croppedHeight = 325;
-    this.cropperSettings.canvasWidth = 325;
-    this.cropperSettings.canvasHeight = 325;
     this.cropperSettings.noFileInput = true;
     this.cropperSettings.preserveSize = true;
+    this.cropperSettings.cropperDrawSettings.strokeColor = '#444444';
+    this.cropperSettings.cropperDrawSettings.strokeWidth = 3;
     this.image = {};
   }
 
@@ -64,6 +61,5 @@ export class AdCreateComponent implements OnInit {
 
     };
     myReader.readAsDataURL(file);
-    this.selected = true;
   }
 }

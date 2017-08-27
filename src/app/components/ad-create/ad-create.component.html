@@ -4,6 +4,11 @@
       <div fxFlex="33">
         <h2>Skapa annons</h2>
 
+          <!--Name-->
+          <md-input-container class="create-ad-input-container">
+            <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
+          </md-input-container>
+
           <!--Title-->
           <md-input-container class="create-ad-input-container">
             <input mdInput placeholder="Titel" [(ngModel)]="title" name="title" spellcheck="false">
@@ -37,11 +42,10 @@
         </div>
       </div>
       <div fxFlex="33">
-        <img-cropper  #cropper [image]="image" [settings]="cropperSettings" style="max-height: 300px; max-width: 300px;"></img-cropper>
-        <img *ngIf="selected" [src]="image.image" style="width:100%; height: auto;">
+        <img-cropper  #cropper [image]="image" [settings]="cropperSettings"></img-cropper>
       </div>
-      <div fxFlex="33" style="background-color: gray;">
-
+      <div fxFlex="33">
+        <img *ngIf="image.image" [src]="image.image" style="max-width:100%; height: auto;">
       </div>
     </div>
   </form>
