@@ -9,7 +9,7 @@ describe('FirebaseDatabaseService', () => {
     });
   });
 
-  it('should be created', inject([FirebaseDatabaseService], (service: FirebaseDatabaseService) => {
+  it('should be created', inject([FirebaseDatabaseService], (service: FirebaseDatabaseService<Object>) => {
     expect(service).toBeTruthy();
   }));
 });

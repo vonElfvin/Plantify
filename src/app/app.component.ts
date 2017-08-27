@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MdIconRegistry } from '@angular/material';
-import { FirebaseAuthService } from './services/firebase-auth.service';
+import { FirebaseAuthService } from './core/auth/firebase-auth.service';
 
 @Component({
   selector: 'app-root',

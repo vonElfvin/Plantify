@@ -35,17 +35,17 @@ form{
 }
 
 #google{
-  background: #ea4335 url('../../../assets/images/google.svg') no-repeat 10px;
+  background: #ea4335 url('../../assets/images/google.svg') no-repeat 10px;
   background-size: 25px;
 }
 #facebook{
-  background: #3b5998 url('../../../assets/images/facebook.svg') no-repeat 10px;
+  background: #3b5998 url('../../assets/images/facebook.svg') no-repeat 10px;
   background-size: 25px;
   margin: 10px 0;
 }
 
 #email{
-  background-image: url('../../../assets/images/envelope.svg');
+  background-image: url('../../assets/images/envelope.svg');
   background-repeat: no-repeat;
   background-position: 10px;
   background-size: 25px;
@@ -54,7 +54,7 @@ form{
 #sign-up{
   padding:5px;
   width:300px;
-  background-image: url('../../../assets/images/envelope.svg');
+  background-image: url('../../assets/images/envelope.svg');
   background-repeat: no-repeat;
   background-position: 10px;
   background-size: 25px;

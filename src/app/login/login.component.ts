@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseAuthService } from '../../services/firebase-auth.service';
+import { FirebaseAuthService } from '../core/auth/firebase-auth.service';
 import { Router } from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
-import { moveIn, fallIn, moveInLeft } from '../../router.animations';
+import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
 const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

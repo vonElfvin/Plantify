@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseDatabaseService} from '../../services/firebase-database.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import {AdService} from '../shared/ad.service';
 
 @Component({
   selector: 'app-ad',
@@ -13,12 +13,12 @@ export class AdComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              private firebaseDatabaseService: FirebaseDatabaseService) {}
+              private adService: AdService) {}
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.firebaseDatabaseService.getAd(this.id).subscribe(ad => {
-      this.firebaseDatabaseService.getImageUrl(ad);
+    this.adService.getAd(this.id).subscribe(ad => {
+      this.adService.getImageUrl(ad);
       this.ad = ad;
     });
   }

@@ -24,7 +24,7 @@
             <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
               Ladda upp bild
             </button>
-            <input id="image" type="file" [(ngModel)]="image" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
+            <input id="image" type="file" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
           </div>
 
           <!--Type-->

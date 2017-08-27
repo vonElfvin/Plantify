@@ -1,7 +1,7 @@
 <span *ngIf="ads">
   <div fxLayout fxLayout.xs="column" fxLayoutWrap="wrap">
     <div fxFlex="25"  *ngFor="let ad of ads.reverse()"  style="border: 5px solid transparent;">
-      <md-card class="ad-card ripplelink" [routerLink]="['/annons/'+ ad.$key]">
+      <md-card class="ripplelink" (click)="onAdClick(ad)">
         <md-card-header>
           <img md-card-avatar class="header-image" src="{{ad.profile_img_url}}">
           <md-card-title style="margin-bottom:10px;">{{ad.title}}</md-card-title>
