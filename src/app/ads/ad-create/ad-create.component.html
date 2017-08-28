@@ -4,29 +4,36 @@
       <div fxFlex="33">
         <h2>Skapa annons</h2>
 
-        <!--Name-->
-        <md-input-container class="create-ad-input-container">
-          <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
-        </md-input-container>
-
         <!--Title-->
         <md-input-container class="create-ad-input-container">
-          <input mdInput placeholder="Titel" [(ngModel)]="title" name="title" spellcheck="false">
+          <input mdInput placeholder="Rubrik" [(ngModel)]="title" name="title" spellcheck="false">
         </md-input-container>
+
+        <!--Category-->
+        <md-select placeholder="Art" class="create-ad-input-container" [(ngModel)]="category" name="category">
+          <md-option *ngFor="let category of categories" [value]="category.value">
+            {{ category.viewValue }}
+          </md-option>
+        </md-select>
 
         <!--Description-->
         <md-input-container class="create-ad-input-container">
-          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow></textarea>
+          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow rows="8"></textarea>
         </md-input-container>
 
-          <!--Image-->
-          <div id="image-div">
-            <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
-              Ladda upp bild
-            </button>
-            <input id="image" type="file" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
-          </div>
+      </div>
+      <div fxFlex="33">
+        <img-cropper  #cropper [image]="image" [settings]="cropperSettings"></img-cropper>
 
+        <!--Image-->
+        <div id="image-div">
+          <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
+            Ladda upp bild
+          </button>
+          <input id="image" type="file" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
+        </div>
+      </div>
+      <div fxFlex="33">
         <!--Type-->
         <div id="radio-button-div">
           <md-radio-group [(ngModel)]="type" name="type" style="text-align:center; display:block;" (change)="resetPrice()">
@@ -61,12 +68,6 @@
         <div id="submit-button-div">
           <button md-raised-button color="primary" id="submit-button">Skapa annons</button>
         </div>
-      </div>
-      <div fxFlex="33">
-        <img-cropper  #cropper [image]="image" [settings]="cropperSettings"></img-cropper>
-      </div>
-      <div fxFlex="33">
-        <img *ngIf="image.image" [src]="image.image" style="max-width:100%; height: auto;">
       </div>
     </div>
   </form>

@@ -62,7 +62,7 @@
             <input mdInput placeholder="Upprepa lösenord" type="password" [(ngModel)]="passwordRepeat" name="passwordRepeat" required>
           </md-input-container>
           <div class="login-button-div">
-            <button md-raised-button color="primary" id="sign-up" [disabled]="passwordFormControl.errors||emailFormControl.errors || password != passwordRepeat">Skapa konto</button>
+            <button md-raised-button color="primary" id="sign-up" [disabled]="passwordFormControl.errors||emailFormControl.errors">Skapa konto</button>
           </div>
         </form>
       </md-tab>

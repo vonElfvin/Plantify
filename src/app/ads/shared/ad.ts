@@ -5,8 +5,10 @@ export class Ad {
   title?: string;
   description?: string;
   image_path?: string;
-  image: string;
+  category?: number;
   type?: string;
+  price?: number;
+  delivery_cost?: number;
   profile_img_url?: string;
   image_url?: string;
   date_time?: any;

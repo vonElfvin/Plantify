@@ -8,6 +8,18 @@ import {UUID} from 'angular2-uuid';
 export class AdService extends FirebaseDatabaseService<Ad> {
   basePath= 'ads';
 
+  categories = [
+    {value: 0, viewValue: 'Övrig'},
+    {value: 1, viewValue: 'Begonia'},
+    {value: 2, viewValue: 'Calathea'},
+    {value: 3, viewValue: 'Elefantöra'},
+    {value: 4, viewValue: 'Gullranka'},
+    {value: 5, viewValue: 'Monstera'},
+    {value: 6, viewValue: 'Oxalis'},
+    {value: 7, viewValue: 'Palettblad'},
+    {value: 8, viewValue: 'Pelargon'},
+  ];
+
   getAd(id): FirebaseObjectObservable<Ad> {
     return this.getItem(id);
   }

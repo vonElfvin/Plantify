@@ -6,6 +6,7 @@ export class FeedbackService {
   loginMessage = 'Du är inloggad.';
   logoutMessage = 'Du är utloggad.';
   loginRequiredMessage = 'Inlogg krävs.';
+  differentPasswordsMessage = 'Lösenorden skiljer sig åt.';
   errorSnackBarConfig: MdSnackBarConfig = new MdSnackBarConfig();
   successSnackBarConfig: MdSnackBarConfig = new MdSnackBarConfig();
 

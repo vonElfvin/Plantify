@@ -10,7 +10,7 @@ import {
   MdButtonModule,
   MdCardModule, MdCheckboxModule,
   MdGridListModule, MdIconModule, MdInputModule, MdListModule, MdMenuModule, MdRadioModule, MdSidenavModule,
-  MdSlideToggleModule,
+  MdSlideToggleModule, MdOptionModule, MdSelectModule,
   MdTabsModule, MdToolbarModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -24,7 +24,7 @@ import {AdsRoutingModule} from './ads-routing.module';
     CommonModule,
     MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule,
     MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule,
-    MdSlideToggleModule, // Material modules
+    MdSlideToggleModule, MdOptionModule,  MdSelectModule,// Material modules
     FlexLayoutModule,
     FormsModule,
     ImageCropperModule

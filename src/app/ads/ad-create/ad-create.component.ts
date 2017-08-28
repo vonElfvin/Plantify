@@ -28,11 +28,14 @@ export class AdCreateComponent implements OnInit {
   @ViewChild('cropper', undefined)
   cropper: ImageCropperComponent;
   format: any;
+  categories: any;
+  category = 0;
 
   constructor(private firebaseAuthService: FirebaseAuthService,
               private adService: AdService,
               private router: Router) {
     this.type = 'sell';
+    this.categories = adService.categories;
 
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.noFileInput = true;
@@ -59,6 +62,7 @@ export class AdCreateComponent implements OnInit {
   }
 
   fileChangeListener($event) {
+    console.log(this.category);
     const image: any = new Image();
     const file: File = $event.target.files[0];
     this.format = file.name.split('.')[1];
