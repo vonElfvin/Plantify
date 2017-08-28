@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
     }
     this.firebaseAuthService.redirectUrl = state.url;
     this.router.navigate(['logga-in']);
-    this.feedback.openErrorSnackBar('Inlogg krävs.');
+    this.feedback.openErrorSnackBar(this.feedback.loginRequiredMessage);
     return false;
   }
 }

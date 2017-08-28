@@ -143,7 +143,7 @@ export class FirebaseAuthService {
 
   signOut(): void {
     this.afAuth.auth.signOut();
-    this.feedback.openErrorSnackBar('Du är nu utloggad.');
+    this.feedback.openErrorSnackBar(this.feedback.logoutMessage);
   }
 
 
@@ -170,6 +170,6 @@ export class FirebaseAuthService {
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = '';
     }
-    this.feedback.openSuccessSnackBar('Du är nu inloggad.');
+    this.feedback.openSuccessSnackBar(this.feedback.loginMessage);
   }
 }

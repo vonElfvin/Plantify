@@ -3,6 +3,9 @@ import {MdSnackBar, MdSnackBarConfig, MdSnackBarRef} from '@angular/material';
 
 @Injectable()
 export class FeedbackService {
+  loginMessage = 'Du är inloggad.';
+  logoutMessage = 'Du är utloggad.';
+  loginRequiredMessage = 'Inlogg krävs.';
   errorSnackBarConfig: MdSnackBarConfig = new MdSnackBarConfig();
   successSnackBarConfig: MdSnackBarConfig = new MdSnackBarConfig();
 
@@ -14,7 +17,7 @@ export class FeedbackService {
   }
 
   openErrorSnackBar(message: string): MdSnackBarRef<any> {
-     return this.snackBar.open(message, 'Stäng', this.errorSnackBarConfig);
+    return this.snackBar.open(message, 'Stäng', this.errorSnackBarConfig);
   }
 
   openSuccessSnackBar(message: string): MdSnackBarRef<any> {
