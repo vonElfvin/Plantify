@@ -13,6 +13,7 @@ import {Observable} from 'rxjs/Observable';
 export class FirebaseAuthService {
 
   authState: any = null;
+  redirectUrl = '';
 
   constructor(private afAuth: AngularFireAuth,
               private db: AngularFireDatabase,
@@ -86,7 +87,7 @@ export class FirebaseAuthService {
       .then((credential) =>  {
         this.authState = credential.user;
         this.updateUserData();
-        this.router.navigate(['/']);
+        this.navigate();
       })
       .catch(error => console.log(error));
   }
@@ -99,6 +100,7 @@ export class FirebaseAuthService {
       .then((user) => {
         this.authState = user;
         this.updateUserData();
+        this.navigate();
       })
       .catch(error => console.log(error));
   }
@@ -110,6 +112,7 @@ export class FirebaseAuthService {
       .then((user) => {
         this.authState = user;
         this.updateUserData();
+        this.emailLogin(email, password);
       })
       .catch(error => console.log(error));
   }
@@ -119,6 +122,7 @@ export class FirebaseAuthService {
       .then((user) => {
         this.authState = user;
         this.updateUserData();
+        this.navigate();
       })
       .catch(error => console.log(error));
   }
@@ -137,7 +141,6 @@ export class FirebaseAuthService {
 
   signOut(): void {
     this.afAuth.auth.signOut();
-    this.router.navigate(['/']);
   }
 
 
@@ -155,7 +158,14 @@ export class FirebaseAuthService {
 
     this.db.object(path).update(data)
       .catch(error => console.log(error));
-
   }
 
+  private navigate() {
+    if (this.redirectUrl === '') {
+      this.location.back();
+    }else {
+      this.router.navigate([this.redirectUrl]);
+      this.redirectUrl = '';
+    }
+  }
 }

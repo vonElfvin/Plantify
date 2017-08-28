@@ -19,10 +19,6 @@ export abstract class FirebaseDatabaseService<ItemClass> {
 
   constructor(private db: AngularFireDatabase, protected firebaseAuthService: FirebaseAuthService) { }
 
-
-
-
-
   protected getTimeStamp(): any {
     return firebase.database.ServerValue.TIMESTAMP;
   }

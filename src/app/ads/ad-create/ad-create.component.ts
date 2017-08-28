@@ -3,7 +3,8 @@ import {CropperSettings, ImageCropperComponent} from 'ng2-img-cropper';
 import { ViewChild } from '@angular/core';
 import {FirebaseAuthService} from '../../core/auth/firebase-auth.service';
 import { moveIn, fallIn, moveInLeft } from '../../router.animations';
-import {AdService} from "../shared/ad.service";
+import {AdService} from '../shared/ad.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ad-create',
@@ -29,7 +30,8 @@ export class AdCreateComponent implements OnInit {
   format: any;
 
   constructor(private firebaseAuthService: FirebaseAuthService,
-              private adService: AdService) {
+              private adService: AdService,
+              private router: Router) {
     this.type = 'sell';
 
     this.cropperSettings = new CropperSettings();
@@ -49,7 +51,11 @@ export class AdCreateComponent implements OnInit {
       description: this.description,
       type: this.type
     };
-    this.adService.createAd(ad, this.image.image);
+    this.adService.createAd(ad, this.image.image).then(() => {
+      this.router.navigate(['/annonser']);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   fileChangeListener($event) {

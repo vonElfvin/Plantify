@@ -36,4 +36,8 @@ export class AdListComponent implements OnInit {
   removeFavorite($key) {
     console.log($key);
   }
+
+  shareAd($key) {
+    console.log($key);
+  }
 }
