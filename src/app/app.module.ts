@@ -7,8 +7,9 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { FirebaseAuthService } from './core/auth/firebase-auth.service';
+import { FeedbackService } from './core/feedback/feedback.service';
 import { environment } from '../environments/environment';
-import {FlexLayoutModule} from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppErrorHandler } from './core/app-error-handler';
 import { ErrorHandler } from '@angular/core';
 import { FlashMessagesModule } from 'angular2-flash-messages';
@@ -17,7 +18,11 @@ import { AuthGuard } from './core/auth/auth.service';
 
 // Material imports
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule, MdCardModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, MdSliderModule, MdSlideToggleModule } from '@angular/material';
+import {
+  MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdSidenavModule, MdListModule,
+  MdCardModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, MdSliderModule, MdSlideToggleModule,
+  MdSnackBarModule
+} from '@angular/material';
 import 'hammerjs';
 
 // Component imports
@@ -41,6 +46,7 @@ import {AppRoutingModule} from './app-routing.module';
     ProfileComponent,
     LoginComponent
   ],
+  entryComponents: [],
   imports: [
     AdsModule,
     AppRoutingModule,
@@ -49,7 +55,7 @@ import {AppRoutingModule} from './app-routing.module';
     FormsModule,
     HttpModule,
     MdButtonModule, MdCheckboxModule, MdToolbarModule, MdMenuModule, MdIconModule, MdCardModule, MdSliderModule, MdSlideToggleModule,
-    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, // Material modules
+    MdSidenavModule, MdListModule, MdInputModule, MdRadioModule, MdTabsModule, MdGridListModule, MdSnackBarModule, // Material modules
     AngularFireModule.initializeApp(environment.firebase),
     FlexLayoutModule,
     ReactiveFormsModule,
@@ -59,6 +65,7 @@ import {AppRoutingModule} from './app-routing.module';
     // Services
     FirebaseAuthService,
     AuthGuard,
+    FeedbackService,
     // Imports
     AngularFireAuth,
     AngularFireDatabase,

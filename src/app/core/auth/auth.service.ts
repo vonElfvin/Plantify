@@ -5,11 +5,14 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/take';
 import {FirebaseAuthService} from './firebase-auth.service';
+import { FeedbackService } from '../feedback/feedback.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private firebaseAuthService: FirebaseAuthService, private router: Router) {}
+  constructor(private firebaseAuthService: FirebaseAuthService,
+              private router: Router,
+              private feedback: FeedbackService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const canLogin = !!this.firebaseAuthService.authState;
@@ -18,6 +21,7 @@ export class AuthGuard implements CanActivate {
     }
     this.firebaseAuthService.redirectUrl = state.url;
     this.router.navigate(['logga-in']);
+    this.feedback.openErrorSnackBar('Inlogg krävs.');
     return false;
   }
 }

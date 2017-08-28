@@ -6,6 +6,7 @@ import * as firebase from 'firebase';
 import { Location } from '@angular/common';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
+import {FeedbackService} from '../feedback/feedback.service';
 
 
 
@@ -18,7 +19,8 @@ export class FirebaseAuthService {
   constructor(private afAuth: AngularFireAuth,
               private db: AngularFireDatabase,
               private location: Location,
-              private router: Router) {
+              private router: Router,
+              private feedback: FeedbackService) {
 
     this.afAuth.authState.subscribe((auth) => {
       this.authState = auth;
@@ -141,6 +143,7 @@ export class FirebaseAuthService {
 
   signOut(): void {
     this.afAuth.auth.signOut();
+    this.feedback.openErrorSnackBar('Du är nu utloggad.');
   }
 
 
@@ -167,5 +170,6 @@ export class FirebaseAuthService {
       this.router.navigate([this.redirectUrl]);
       this.redirectUrl = '';
     }
+    this.feedback.openSuccessSnackBar('Du är nu inloggad.');
   }
 }
