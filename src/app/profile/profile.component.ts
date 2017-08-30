@@ -16,7 +16,12 @@ export class ProfileComponent implements OnInit {
 
     this.firebaseAuthService.currentUserObservable.subscribe(
       res => {
-        this.displayName = res.displayName;
+        if (res) {
+          console.log(res);
+          this.displayName = res.displayName;
+        }else {
+          this.displayName = null;
+        }
       }
     );
   }

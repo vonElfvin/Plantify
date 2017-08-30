@@ -12,5 +12,8 @@ export const environment = {
     projectId: 'plantify-64319',
     storageBucket: 'plantify-64319.appspot.com',
     messagingSenderId: '1080377796316'
+  },
+  firebaseAuthConfig : {
+    scope: ['email']
   }
 };

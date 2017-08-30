@@ -75,6 +75,7 @@ export class FirebaseAuthService {
 
   googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('email');
     return this.socialSignIn(provider);
   }
 
@@ -85,6 +86,7 @@ export class FirebaseAuthService {
 
 
   private socialSignIn(provider) {
+
     return this.afAuth.auth.signInWithPopup(provider)
       .then((credential) =>  {
         this.authState = credential.user;
@@ -155,8 +157,9 @@ export class FirebaseAuthService {
 
     const path = `users/${this.currentUserId}`; // Endpoint on firebase
     const data = {
-      email: this.authState.email,
-      name: this.authState.displayName
+      email: this.authState.providerData[0].email,
+      name: this.authState.displayName,
+      profileImgUrl: this.authState.providerData[0].photoURL
     };
 
     this.db.object(path).update(data)
