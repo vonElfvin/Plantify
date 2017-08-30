@@ -1,5 +1,23 @@
 #ad-card {
-  max-width:600px;
-  display:block;
+  max-width:750px;
   margin: 15px auto;
+  height: calc(70% - 7px);
+  padding: 0;
+  border: 0;
+}
+
+md-list-item {
+  margin:0 -16px;
+}
+
+md-card-content  {
+  margin-top: 10px;
+}
+
+p {
+  vertical-align: middle;
+}
+
+.info-row {
+  align-items: center;
 }

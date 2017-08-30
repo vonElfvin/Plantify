@@ -1,5 +1,6 @@
 #ad-create-md-card {
   max-width:1050px;
+  min-height: 395px;
   display:block;
   margin: 15px auto;
 }
@@ -8,8 +9,8 @@
   width:100%;
 }
 
-#radio-button-div {
-  margin:20px;
+.radio-button-div {
+  margin:5px;
 }
 
 button {
@@ -19,6 +20,10 @@ button {
 
 md-radio-button{
   padding: 5px;
+}
+
+md-checkbox {
+  margin-left: 10px;
 }
 
 #image-button{
@@ -33,6 +38,7 @@ md-radio-button{
   background-repeat: no-repeat;
   background-position: 10px;
   background-size: 25px;
+  margin-top: 20px;
 }
 
 canvas {

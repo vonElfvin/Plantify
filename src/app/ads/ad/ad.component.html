@@ -1,53 +1,46 @@
-  <md-card id="ad-card">
-    <md-card-header>
-      <img md-card-avatar class="header-image" src="{{ad.profile_img_url}}">
-      <md-card-title style="margin-bottom:10px;">{{ad.title}}</md-card-title>
-      <md-card-subtitle>Någon text här</md-card-subtitle>
-    </md-card-header>
-    <md-card-content>
-      <div *ngIf="ad" fxLayout>
+  <md-card id="ad-card" *ngIf="ad">
+      <div *ngIf="ad" fxLayout fxLayout.xs="column" fxLayoutWrap="true">
         <div fxFlex="70">
           <img *ngIf="ad.image_url" src="{{ad.image_url}}" style="width:100%">
-          <p><b>Titeln</b></p>
-          <p>Beskrivningen</p>
         </div>
-        <div fxFlex="30">
-          <md-list>
-            <!--Title-->
-            <md-list-item>
-              <md-icon>title</md-icon>
-              <p>Titeln</p>
-            </md-list-item>
-            <md-divider></md-divider>
+        <div fxFlex="30" style="padding:15px; position: relative;">
+          <md-card-header>
+            <img md-card-avatar class="header-image" src="{{ad.profile_img_url}}">
+            <md-card-title style="margin-bottom:10px;">Namnet här</md-card-title>
+            <md-card-subtitle>Platsen här</md-card-subtitle>
+          </md-card-header>
+          <md-card-content>
+            <p><b>Titeln här</b></p>
+            <p> BeskrivningenBeskrivningen här Beskrivningen här Beskrivningen här Beskrivningen här Beskrivningen här</p>
 
-            <!--Title-->
-            <md-list-item>
-              <md-icon>info</md-icon>
-              <p>Beskrivningen</p>
-            </md-list-item>
-            <md-divider></md-divider>
-
-            <!--Title-->
-            <md-list-item>
-              <md-icon>credit_card</md-icon>
-              <p>Pris</p>
-            </md-list-item>
-            <md-divider></md-divider>
-
-            <!--Title-->
-            <md-list-item>
+              <!--Art-->
+            <div class="info-row" fxLayout="row">
               <md-icon>local_florist</md-icon>
               <p>Arten</p>
-            </md-list-item>
-            <md-divider></md-divider>
+            </div>
 
-            <!--Title-->
-            <md-list-item>
+            <!--Price-->
+            <div class="info-row" fxLayout="row">
+              <md-icon>credit_card</md-icon>
+              <p>Pris</p>
+            </div>
+
+            <!--Delivery cost-->
+            <div class="info-row" fxLayout="row">
               <md-icon>local_shipping</md-icon>
               <p>Fraktkostnad</p>
-            </md-list-item>
-          </md-list>
+            </div>
+
+            <!--Bytes-->
+            <div class="info-row" fxLayout="row">
+              <md-icon>compare_arrows</md-icon>
+              <p>Bytes</p>
+            </div>
+          </md-card-content>
+          <md-card-footer>
+            <md-icon>favorite_border</md-icon>
+            <md-icon style="fill:red; color:red;">favorite</md-icon>
+          </md-card-footer>
         </div>
       </div>
-    </md-card-content>
   </md-card>

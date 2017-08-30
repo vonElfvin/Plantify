@@ -2,7 +2,7 @@
   <form #formData="ngForm" (ngSubmit)="createAd()">
     <div fxLayout fxLayout.xs="column" fxLayoutGap="25px">
       <div fxFlex="33">
-        <h2>Skapa annons</h2>
+        <h2 style="margin:0;">Skapa annons</h2>
 
         <!--Title-->
         <md-input-container class="create-ad-input-container">
@@ -18,24 +18,11 @@
 
         <!--Description-->
         <md-input-container class="create-ad-input-container">
-          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow rows="8"></textarea>
+          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow rows="6"></textarea>
         </md-input-container>
 
-      </div>
-      <div fxFlex="33">
-        <img-cropper  #cropper [image]="image" [settings]="cropperSettings"></img-cropper>
-
-        <!--Image-->
-        <div id="image-div">
-          <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
-            Ladda upp bild
-          </button>
-          <input id="image" type="file" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
-        </div>
-      </div>
-      <div fxFlex="33">
         <!--Type-->
-        <div id="radio-button-div">
+        <div class="radio-button-div">
           <md-radio-group [(ngModel)]="type" name="type" style="text-align:center; display:block;" (change)="resetPrice()">
             <md-radio-button value="sell" color="primary">Säljes</md-radio-button>
             <md-radio-button value="trade">Bytes</md-radio-button>
@@ -49,8 +36,37 @@
           <span class="kr">kr</span>
         </md-input-container>
 
+        <!--Trade with-->
+        <md-input-container *ngIf="type=='trade'" class="create-ad-input-container">
+          <input mdInput placeholder="Bytes mot" [(ngModel)]="tradeWith" name="tradeWith" spellcheck="false">
+        </md-input-container>
+      </div>
+      <div fxFlex="33">
+        <img-cropper  #cropper [image]="image" [settings]="cropperSettings"></img-cropper>
+
+        <!--Image-->
+        <div id="image-div">
+          <button md-raised-button color="accent" type="button" id="image-button" onclick="document.getElementById('image').click()">
+            Ladda upp bild
+          </button>
+          <input id="image" type="file" name="image" style="display:none;" accept="image/*" (change)="fileChangeListener($event)">
+        </div>
+      </div>
+      <div fxFlex="33">
+
+        <!--Delivery method-->
+        <section>
+          <label>Leveransmetod</label>
+          <div>
+          <md-checkbox color="primary" [(ngModel)]="mail" name="mail">Posten</md-checkbox>
+          </div>
+          <div>
+          <md-checkbox color="primary" [(ngModel)]="meet" name="meet">Avhämtning</md-checkbox>
+          </div>
+        </section>
+
         <!--Delivery-->
-        <div style="width:100%; display: flex;">
+        <div style="width:100%; display: flex;" *ngIf="!!mail">
           <md-input-container style="width:50%">
             <div *ngIf="!freeDelivery">
               <input mdInput placeholder="Fraktkostand" [(ngModel)]="deliveryCost" name="deliveryCost" spellcheck="false" type="number" min="0">
@@ -63,6 +79,28 @@
           <span class="fill-remaining-space"></span>
           <md-slide-toggle ngDefaultControl [(ngModel)]="freeDelivery" name="freeDelivery" style="margin-top:20px;" (change)="resetDeliveryCost()">Fri frakt</md-slide-toggle>
         </div>
+
+        <!--Price-->
+        <md-input-container *ngIf="!!meet" class="create-ad-input-container">
+          <input mdInput placeholder="Plats för avhämtning" [(ngModel)]="location" name="location" spellcheck="false" type="string">
+        </md-input-container>
+
+        <!--Payment method-->
+        <section *ngIf="type=='sell'||!freeDelivery">
+          <label>Betalningsmetod</label>
+          <div>
+            <md-checkbox [(ngModel)]="swish" name="swish">Swish</md-checkbox>
+          </div>
+          <div>
+            <md-checkbox [(ngModel)]="paypal" name="paypal">Paypal</md-checkbox>
+          </div>
+          <div>
+            <md-checkbox [(ngModel)]="bankTransfer" name="bankTransfer">Banköverföring</md-checkbox>
+          </div>
+          <div>
+            <md-checkbox [(ngModel)]="cash" name="cash">Kontant</md-checkbox>
+          </div>
+        </section>
 
         <!--Submit button-->
         <div id="submit-button-div">

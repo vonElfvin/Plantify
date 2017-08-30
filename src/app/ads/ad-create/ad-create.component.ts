@@ -21,8 +21,16 @@ export class AdCreateComponent implements OnInit {
   description: string;
   type: string;
   price: number;
+  tradeWith: string;
   deliveryCost: number;
+  swish: boolean;
+  paypal: boolean;
+  bankTransfer: boolean;
+  cash: boolean;
+  mail: boolean;
+  meet: boolean;
   freeDelivery = false;
+  location: string;
   image: any;
   cropperSettings: CropperSettings;
   @ViewChild('cropper', undefined)
