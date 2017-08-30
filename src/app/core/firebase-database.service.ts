@@ -17,7 +17,7 @@ export abstract class FirebaseDatabaseService<ItemClass> {
 
 
 
-  constructor(private db: AngularFireDatabase, protected firebaseAuthService: FirebaseAuthService) { }
+  constructor(protected db: AngularFireDatabase) { }
 
   protected getTimeStamp(): any {
     return firebase.database.ServerValue.TIMESTAMP;
@@ -78,8 +78,6 @@ export abstract class FirebaseDatabaseService<ItemClass> {
     const image_name = UUID.UUID() + '.' + format;
     const image_path = `/${folder}/${image_name}`;
     const iRef = storageRef.child(image_path);
-    console.log(storageRef);
-    console.log(image_path);
     return iRef.putString(selectedFile, 'data_url');
   }
 }

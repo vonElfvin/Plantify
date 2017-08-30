@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 // import { PageNotFoundComponent } from './not-found.component';
 import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
-import {ProfileComponent} from './profile/profile.component';
+import {ProfileComponent} from './users/profile/profile.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},

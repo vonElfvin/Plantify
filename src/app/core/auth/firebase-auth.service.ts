@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import {Subject} from 'rxjs/Subject';
 import {Observable} from 'rxjs/Observable';
 import {FeedbackService} from '../feedback/feedback.service';
+import {User} from '../../users/shared/user';
 
 
 
@@ -44,6 +45,10 @@ export class FirebaseAuthService {
   // Returns
   get currentUserObservable(): Observable<any> {
     return this.afAuth.authState;
+  }
+
+  get currentUserIdObservable(): Observable<string> {
+    return this.afAuth.authState.map(authState => authState.uid);
   }
 
   // Returns current user UID
@@ -156,13 +161,11 @@ export class FirebaseAuthService {
     // useful if your app displays information about users or for admin features
 
     const path = `users/${this.currentUserId}`; // Endpoint on firebase
-    const data = {
-      email: this.authState.providerData[0].email,
-      name: this.authState.displayName,
-      profileImgUrl: this.authState.providerData[0].photoURL
-    };
-
-    this.db.object(path).update(data)
+    const user = new User();
+    user.email = this.authState.providerData[0].email;
+    user.name = this.authState.displayName;
+    user.profileImgUrl = this.authState.providerData[0].photoURL;
+    this.db.object(path).update(user)
       .catch(error => console.log(error));
   }
 

@@ -3,10 +3,17 @@ import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} f
 import {Ad} from './ad';
 import {FirebaseDatabaseService} from '../../core/firebase-database.service';
 import {UUID} from 'angular2-uuid';
+import {UserService} from '../../users/shared/user.service';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class AdService extends FirebaseDatabaseService<Ad> {
   basePath= 'ads';
+
+  constructor(protected db: AngularFireDatabase, protected userService: UserService) {
+    super(db);
+
+  }
 
   getAd(id): FirebaseObjectObservable<Ad> {
     return this.getItem(id);
@@ -17,11 +24,13 @@ export class AdService extends FirebaseDatabaseService<Ad> {
   }
 
   createAd(ad, image: string): any {
+    const user = this.userService.getCurrentUser();
     return this.createBase64Image(image, 'ad-images').then(snapshot => {
       ad.image_path = snapshot.metadata.fullPath;
-      ad.author = this.firebaseAuthService.currentUserId;
-      ad.profile_img_url = this.firebaseAuthService.currentUser.photoURL;
+      ad.author = user.$key;
+      ad.profile_img_url = user.profileImgUrl;
       ad.date_time = this.getTimeStamp();
+      this.userService.updateUser(user);
       return this.createItem(ad);
     });
   }
@@ -32,6 +41,20 @@ export class AdService extends FirebaseDatabaseService<Ad> {
     }).catch((error) => {
       console.log(error.message);
     });
+  }
+
+
+  getMyAds(): Observable<Ad[]> {
+    return this.userService.getCurrentUserKeyObservable().switchMap(
+      key => {
+        return this.getItemsList(
+          {
+            orderByChild: 'author',
+            equalTo: key
+          }
+        );
+      }
+    );
   }
 
 

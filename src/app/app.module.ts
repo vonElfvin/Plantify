@@ -31,11 +31,12 @@ import { HomeComponent } from './home/home.component';
 import { AdListComponent } from './ads/ad-list/ad-list.component';
 import { AdCreateComponent } from './ads/ad-create/ad-create.component';
 import { AdEditComponent } from './ads/ad-edit/ad-edit.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './users/profile/profile.component';
 import { AdComponent } from './ads/ad/ad.component';
 import { LoginComponent } from './login/login.component';
 import { AdsModule } from './ads/ads.module';
-import {AppRoutingModule} from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
+import { UsersModule } from './users/users.module';
 
 
 
@@ -43,12 +44,12 @@ import {AppRoutingModule} from './app-routing.module';
   declarations: [
     AppComponent,
     HomeComponent,
-    ProfileComponent,
     LoginComponent
   ],
   entryComponents: [],
   imports: [
     AdsModule,
+    UsersModule, // Created Modules
     AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,

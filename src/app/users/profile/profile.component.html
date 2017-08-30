@@ -1,0 +1,8 @@
+<h3 *ngIf="currentUser">Tjeeeeeeena {{currentUser.name}}</h3>
+
+<pre>{{currentUser|json}}</pre>
+
+<h4>{{userIdObs| async}}</h4>
+
+<h3>My Ads</h3>
+<app-ad-list [adsObs]="adsObs"></app-ad-list>

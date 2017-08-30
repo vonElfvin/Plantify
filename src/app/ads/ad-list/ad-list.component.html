@@ -8,7 +8,7 @@
           <md-card-subtitle>{{ad.name}}</md-card-subtitle>
         </md-card-header>
         <md-card-content>
-          <img *ngIf="ad.image_url" src="{{ad.image_url}}" style="width:100%;" (click)="onAdClick(ad)">
+          <img src="{{ad.image_url}}" style="width:100%;" (click)="onAdClick(ad)">
           <div class="action-div">
             <md-icon (click)="addFavorite(ad.$key)">favorite_border</md-icon>
             <md-icon (click)="removeFavorite(ad.$key)" style="fill:red; color:red;">favorite</md-icon>
@@ -18,3 +18,4 @@
     </div>
   </div>
 </span>
+

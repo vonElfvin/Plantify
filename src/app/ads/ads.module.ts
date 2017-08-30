@@ -35,6 +35,12 @@ import {AdsRoutingModule} from './ads-routing.module';
     AdCreateComponent,
     AdEditComponent
   ],
+  exports: [
+    AdComponent,
+    AdListComponent,
+    AdCreateComponent,
+    AdEditComponent
+  ],
   providers: [
     AdService,
     AuthGuard
