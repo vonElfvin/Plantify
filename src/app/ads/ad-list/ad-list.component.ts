@@ -5,6 +5,9 @@ import {Router} from '@angular/router';
 import {AdService} from '../shared/ad.service';
 import {Ad} from '../shared/ad';
 import {Observable} from 'rxjs/Observable';
+import {UserService} from '../../users/shared/user.service';
+import 'rxjs/add/observable/combineLatest';
+
 
 @Component({
   selector: 'app-ad-list',
@@ -20,18 +23,39 @@ export class AdListComponent implements OnInit {
 
   constructor(private firebaseAuthService: FirebaseAuthService,
               private adService: AdService,
+              private userService: UserService,
               private router: Router) { }
 
   ngOnInit() {
     if (!this.adsObs) {
       this.adsObs = this.adService.getAds();
     }
-    this.adsObs.subscribe(ads => {
-      for (const ad of ads) {
-        this.adService.getImageUrl(ad);
-      }
-      this.ads = ads;
-    });
+
+
+    Observable.combineLatest(this.adsObs, this.userService.getItemsList()).subscribe(data => {
+        const ads = data[0];
+        const users = data[1];
+        for (const ad of ads){
+          this.adService.getImageUrl(ad);
+          for (const user of users){
+            if (user.$key === ad.author) {
+              ad.name = user.name;
+            }
+          }
+        }
+        this.ads = ads;
+      },
+      err => console.log(err)
+      , () => console.log('res'));
+
+
+    // source.subscribe(ads => {
+    //   const users = this.userService.getItemsList();
+    //   for (const ad of ads) {
+    //     this.adService.getImageUrl(ad);
+    //   }
+    //   this.ads = ads;
+    // });
   }
 
 
