@@ -12,5 +12,7 @@ export class Ad {
   profile_img_url?: string;
   image_url?: string;
   date_time?: any;
+  price: number;
+  deliveryCost: number;
   user?: User;
 }

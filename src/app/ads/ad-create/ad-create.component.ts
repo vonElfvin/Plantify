@@ -4,7 +4,9 @@ import { ViewChild } from '@angular/core';
 import {FirebaseAuthService} from '../../core/auth/firebase-auth.service';
 import { moveIn, fallIn, moveInLeft } from '../../router.animations';
 import {AdService} from '../shared/ad.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Ad} from '../shared/ad';
+import {Http} from '@angular/http';
 
 @Component({
   selector: 'app-ad-create',
@@ -14,14 +16,7 @@ import {Router} from '@angular/router';
 })
 
 export class AdCreateComponent implements OnInit {
-  state: '';
-  // For the form
-  name: string;
-  title: string;
-  description: string;
-  type: string;
-  price: number;
-  deliveryCost: number;
+
   freeDelivery = false;
   image: any;
   cropperSettings: CropperSettings;
@@ -29,10 +24,27 @@ export class AdCreateComponent implements OnInit {
   cropper: ImageCropperComponent;
   format: any;
 
+  adId: string;
+  ad: Ad;
+
   constructor(private firebaseAuthService: FirebaseAuthService,
               private adService: AdService,
-              private router: Router) {
-    this.type = 'sell';
+              private router: Router,
+              private route: ActivatedRoute,
+              private http: Http) {
+
+    this.adId = this.route.snapshot.params['id'];
+
+    if (this.adId) {
+      this.adService.getAd(this.adId).subscribe(
+        res => this.ad = res,
+        err => console.log(err));
+    }else {
+      this.ad = new Ad();
+    }
+
+
+    this.ad.type = 'sell';
 
     this.cropperSettings = new CropperSettings();
     this.cropperSettings.noFileInput = true;
@@ -46,12 +58,8 @@ export class AdCreateComponent implements OnInit {
   }
 
   createAd() {
-    const ad = {
-      title: this.title,
-      description: this.description,
-      type: this.type
-    };
-    this.adService.createAd(ad, this.image.image).then(() => {
+
+    this.adService.createAd(this.ad, this.image.image).then(() => {
       this.router.navigate(['/annonser']);
     }).catch((error) => {
       console.log(error);
@@ -59,8 +67,11 @@ export class AdCreateComponent implements OnInit {
   }
 
   fileChangeListener($event) {
+
     const image: any = new Image();
     const file: File = $event.target.files[0];
+
+
     this.format = file.name.split('.')[1];
     const myReader: FileReader = new FileReader();
     const that = this;
@@ -73,10 +84,24 @@ export class AdCreateComponent implements OnInit {
   }
 
   resetDeliveryCost() {
-    this.deliveryCost = null;
+    this.ad.deliveryCost = null;
   }
 
   resetPrice() {
-    this.price = null;
+    this.ad.price = null;
   }
+
+
+  // downloadFile(url: string) {
+  //   this.http.get(
+  //     url).subscribe(
+  //     (response) => {
+  //       const mediaType = 'image/jpeg';
+  //       const blob = new Blob([response._body], {type: mediaType});
+  //       const filename = 'test.pdf';
+  //       file new File([blob], filename);
+  //
+  //     });
+  // }
+
 }

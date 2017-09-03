@@ -9,6 +9,7 @@ import {AuthGuard} from '../core/auth/auth.service';
 const routes: Routes = [
   {path: 'annonser', component: AdListComponent},
   {path: 'skapa-annons', component: AdCreateComponent, canActivate: [AuthGuard]},
+  {path: 'edit-annons/:id', component: AdCreateComponent, canActivate: [AuthGuard]},
   {path: 'annons/:id', component: AdComponent},
 ];
 

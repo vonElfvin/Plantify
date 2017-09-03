@@ -72,6 +72,6 @@ export class AdListComponent implements OnInit {
   }
 
   onEditClick(ad: Ad) {
-    this.router.navigate(['skapa-annons']);
+    this.router.navigate(['edit-annons/' + ad.$key]);
   }
 }

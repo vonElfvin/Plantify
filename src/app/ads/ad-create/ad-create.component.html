@@ -6,17 +6,17 @@
 
         <!--Name-->
         <md-input-container class="create-ad-input-container">
-          <input mdInput placeholder="Namn" [(ngModel)]="name" name="name" spellcheck="false">
+          <input mdInput placeholder="Namn" [(ngModel)]="ad.name" name="name" spellcheck="false">
         </md-input-container>
 
         <!--Title-->
         <md-input-container class="create-ad-input-container">
-          <input mdInput placeholder="Titel" [(ngModel)]="title" name="title" spellcheck="false">
+          <input mdInput placeholder="Titel" [(ngModel)]="ad.title" name="title" spellcheck="false">
         </md-input-container>
 
         <!--Description-->
         <md-input-container class="create-ad-input-container">
-          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="description" name="description" spellcheck="false" md-autogrow></textarea>
+          <textarea mdInput placeholder="Beskrivning" [(ngModel)]="ad.description" name="description" spellcheck="false" md-autogrow></textarea>
         </md-input-container>
 
           <!--Image-->
@@ -29,7 +29,7 @@
 
         <!--Type-->
         <div id="radio-button-div">
-          <md-radio-group [(ngModel)]="type" name="type" style="text-align:center; display:block;" (change)="resetPrice()">
+          <md-radio-group [(ngModel)]="ad.type" name="type" style="text-align:center; display:block;" (change)="resetPrice()">
             <md-radio-button value="sell" color="primary">Säljes</md-radio-button>
             <md-radio-button value="trade">Bytes</md-radio-button>
             <md-radio-button value="gift">Skänkes</md-radio-button>
@@ -37,8 +37,8 @@
         </div>
 
         <!--Price-->
-        <md-input-container *ngIf="type=='sell'" class="create-ad-input-container">
-          <input mdInput placeholder="Pris" [(ngModel)]="price" name="price" spellcheck="false" type="number" min="0">
+        <md-input-container *ngIf="ad.type=='sell'" class="create-ad-input-container">
+          <input mdInput placeholder="Pris" [(ngModel)]="ad.price" name="price" spellcheck="false" type="number" min="0">
           <span class="kr">kr</span>
         </md-input-container>
 
@@ -46,11 +46,11 @@
         <div style="width:100%; display: flex;">
           <md-input-container style="width:50%">
             <div *ngIf="!freeDelivery">
-              <input mdInput placeholder="Fraktkostand" [(ngModel)]="deliveryCost" name="deliveryCost" spellcheck="false" type="number" min="0">
+              <input mdInput placeholder="Fraktkostand" [(ngModel)]="ad.deliveryCost" name="deliveryCost" spellcheck="false" type="number" min="0">
               <span class="kr">kr</span>
             </div>
             <div *ngIf="freeDelivery">
-              <input mdInput placeholder="Fri frakt" disabled=true [(ngModel)]="deliveryCost" name="deliveryCost" spellcheck="false" type="number" min="0">
+              <input mdInput placeholder="Fri frakt" disabled=true [(ngModel)]="ad.deliveryCost" name="deliveryCost" spellcheck="false" type="number" min="0">
             </div>
           </md-input-container>
           <span class="fill-remaining-space"></span>
@@ -70,4 +70,6 @@
       </div>
     </div>
   </form>
+  <button md-button (click)="fileChangeListener(null, 'https://firebasestorage.googleapis.com/v0/b/plantify-64319.appspot.com/o/ad-images%2F77158a0c-f96f-e7b1-6398-6be84a3634e1.jpeg?alt=media&token=5f3913ae-adab-498e-a6a9-62350cd638b7')">ss</button>
+
 </md-card>

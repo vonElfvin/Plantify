@@ -93,5 +93,4 @@ export class AdService extends FirebaseDatabaseService<Ad> {
 
 
 
-
 }
