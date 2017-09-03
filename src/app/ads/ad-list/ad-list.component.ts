@@ -21,6 +21,8 @@ export class AdListComponent implements OnInit {
   @Input()
   adsObs: Observable<Ad[]>;
 
+  editable= false;
+
   constructor(private firebaseAuthService: FirebaseAuthService,
               private adService: AdService,
               private userService: UserService,
@@ -28,34 +30,27 @@ export class AdListComponent implements OnInit {
 
   ngOnInit() {
     if (!this.adsObs) {
-      this.adsObs = this.adService.getAds();
-    }
-
-
-    Observable.combineLatest(this.adsObs, this.userService.getItemsList()).subscribe(data => {
-        const ads = data[0];
-        const users = data[1];
-        for (const ad of ads){
-          this.adService.getImageUrl(ad);
-          for (const user of users){
-            if (user.$key === ad.author) {
-              ad.name = user.name;
+      this.adsObs = this.adService.getAdsWithUserAndImgUrl();
+    }else {
+      this.editable = true;
+      this.adsObs = Observable.combineLatest(this.adsObs, this.userService.getItemsList()).map(data => {
+          const ads = data[0];
+          const users = data[1];
+          for (const ad of ads){
+            this.adService.getImageUrl(ad);
+            for (const user of users){
+              if (user.$key === ad.author) {
+                ad.user = user;
+              }
             }
           }
-        }
-        this.ads = ads;
-      },
-      err => console.log(err)
-      , () => console.log('res'));
+          return  ads;
+        });
+    }
 
-
-    // source.subscribe(ads => {
-    //   const users = this.userService.getItemsList();
-    //   for (const ad of ads) {
-    //     this.adService.getImageUrl(ad);
-    //   }
-    //   this.ads = ads;
-    // });
+    this.adsObs.subscribe(ads => {
+      this.ads = ads;
+    });
   }
 
 
@@ -74,5 +69,9 @@ export class AdListComponent implements OnInit {
 
   shareAd($key) {
     console.log($key);
+  }
+
+  onEditClick(ad: Ad) {
+    this.router.navigate(['skapa-annons']);
   }
 }

@@ -28,7 +28,6 @@ export class AdService extends FirebaseDatabaseService<Ad> {
     return this.createBase64Image(image, 'ad-images').then(snapshot => {
       ad.image_path = snapshot.metadata.fullPath;
       ad.author = user.$key;
-      ad.profile_img_url = user.profileImgUrl;
       ad.date_time = this.getTimeStamp();
       this.userService.updateUser(user);
       return this.createItem(ad);
@@ -55,6 +54,38 @@ export class AdService extends FirebaseDatabaseService<Ad> {
         );
       }
     );
+  }
+
+  getAdsWithUserAndImgUrl(): Observable<Ad[]> {
+    return Observable.combineLatest(this.getAds(), this.userService.getItemsList()).map(data => {
+        const ads = data[0];
+        const users = data[1];
+        for (const ad of ads){
+          this.getImageUrl(ad);
+          for (const user of users){
+            if (user.$key === ad.author) {
+              ad.user = user;
+            }
+          }
+        }
+        return ads;
+      });
+  }
+
+  getMyAdsWithUserAndImgUrl(): Observable<Ad[]> {
+    return Observable.combineLatest(this.getMyAds(), this.userService.getItemsList()).map(data => {
+      const ads = data[0];
+      const users = data[1];
+      for (const ad of ads){
+        this.getImageUrl(ad);
+        for (const user of users){
+          if (user.$key === ad.author) {
+            ad.user = user;
+          }
+        }
+      }
+      return ads;
+    });
   }
 
 

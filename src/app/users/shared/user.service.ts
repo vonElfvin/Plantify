@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FirebaseDatabaseService } from '../../core/firebase-database.service';
 import { User } from './user';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
 import {FirebaseAuthService} from '../../core/auth/firebase-auth.service';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/mergeMap';
@@ -20,6 +20,10 @@ export class UserService extends FirebaseDatabaseService<User> {
       res => this.currentUser = res
     );
 
+  }
+
+  getUsers(): FirebaseListObservable<User[]> {
+    return this.getItemsList();
   }
 
   getCurrentUserObservable(): Observable<User> {

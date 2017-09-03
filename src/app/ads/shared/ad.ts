@@ -1,3 +1,5 @@
+import {User} from '../../users/shared/user';
+
 export class Ad {
   $key?: string;
   author?: string;
@@ -10,4 +12,5 @@ export class Ad {
   profile_img_url?: string;
   image_url?: string;
   date_time?: any;
+  user?: User;
 }
